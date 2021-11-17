@@ -6,9 +6,14 @@ const PaintCanvas: FC = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
     const [isDrawing, setIsDrawing] = useState(false);
+    const [isFilling, setIsFilling] = useState(false);
+    const [toolType, setToolType] = useState("brush");
     const [lineWidth, setLineWidth] = useState(5);
     const [lineColor, setLineColor] = useState("black");
     const [lineOpacity, setLineOpacity] = useState(0.1);
+
+
+    console.log('toolType: ', toolType, 'isDrawing: ', isDrawing, 'isFilling: ', isFilling)
 
     // initializing when the component mounts for the first time
     useEffect(() => {
@@ -55,13 +60,50 @@ const PaintCanvas: FC = () => {
         ctxRef.current!.stroke();
     }
 
+    // fill functionality
+    const startFill = () => {
+        setIsFilling(true);
+        ctxRef.current!.fillStyle = lineColor
+        ctxRef.current?.fill()
+    }
+    // function on end filling
+    const endFill = () => {
+        setIsFilling(false)
+    }
+
+
+    // onClick handler for switching between tools
+    const toolBtnHandler = () => {
+        // if current tool is brush - set to fill or vice versa
+        if (toolType === "brush") {
+            setToolType('fill')
+        }
+        if (toolType === "fill") {
+            setToolType("brush")
+        }
+    }
+
+
+    // conditional mouse handlers
+    let mouseDownHandler;
+    let mouseUpHandler;
+    if (toolType === "brush") {
+        mouseDownHandler = startDrawing;
+        mouseUpHandler = endDrawing;
+    }
+
+    if (toolType === "fill") {
+        mouseUpHandler = startFill;
+        mouseDownHandler = endFill;
+    }
     return (
         <section>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} />
+            <button type="button" onClick={toolBtnHandler}>{toolType}</button>
             <canvas
                 ref={canvasRef}
-                onMouseDown={startDrawing}
-                onMouseUp={endDrawing}
+                onMouseDown={mouseDownHandler}
+                onMouseUp={mouseUpHandler}
                 onMouseMove={draw}
                 width={`1280px`}
                 height={`720px`}
