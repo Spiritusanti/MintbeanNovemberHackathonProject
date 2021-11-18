@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, MouseEventHandler, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
+import getClientXY from 'get-client-xy';
 
 const PaintCanvas: FC = () => {
     // state management
@@ -31,32 +32,40 @@ const PaintCanvas: FC = () => {
     }, [lineWidth, lineColor, lineOpacity]);
 
 
-    // function for starting the drawing
-    const startDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        ctxRef.current?.beginPath();
-        ctxRef.current!.moveTo(
-            event.nativeEvent.offsetX,
-            event.nativeEvent.offsetY,
-        );
+    // functions for drawing functionality
+    const startMouseDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
+        const [x, y] = getClientXY(event.nativeEvent);
+        ctxRef.current!.beginPath();
+        ctxRef.current!.moveTo(x, y);
         setIsDrawing(true);
     }
 
-
-    // function for ending drawing
+    const startTouchDrawing = (event: React.TouchEvent<HTMLCanvasElement>) => {
+        const [x, y] = getClientXY(event.nativeEvent);
+        ctxRef.current!.beginPath();
+        ctxRef.current!.moveTo(x, y);
+        setIsDrawing(true);
+    }
     const endDrawing = () => {
-        ctxRef.current?.closePath();
+        ctxRef.current!.closePath();
         setIsDrawing(false);
     }
 
-    // draw function
-    const draw = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const drawMouse = (event: React.MouseEvent<HTMLCanvasElement>) => {
+        const [x, y] = getClientXY(event.nativeEvent);
         if (!isDrawing) {
             return;
         }
-        ctxRef.current!.lineTo(
-            event.nativeEvent.offsetX,
-            event.nativeEvent.offsetY
-        )
+        ctxRef.current!.lineTo(x, y)
+        ctxRef.current!.stroke();
+    }
+
+    const drawTouch = (event: React.TouchEvent<HTMLCanvasElement>) => {
+        const [x, y] = getClientXY(event.nativeEvent);
+        if (!isDrawing) {
+            return;
+        }
+        ctxRef.current!.lineTo(x, y)
         ctxRef.current!.stroke();
     }
 
@@ -87,14 +96,18 @@ const PaintCanvas: FC = () => {
     // conditional mouse handlers
     let mouseDownHandler;
     let mouseUpHandler;
+    let touchStartHandler;
+    let touchEndHandler;
     if (toolType === "brush") {
-        mouseDownHandler = startDrawing;
+        mouseDownHandler = startMouseDrawing;
+        touchStartHandler = startTouchDrawing;
         mouseUpHandler = endDrawing;
     }
 
     if (toolType === "fill") {
         mouseUpHandler = startFill;
         mouseDownHandler = endFill;
+        touchEndHandler = endDrawing;
     }
     return (
         <section>
@@ -104,7 +117,10 @@ const PaintCanvas: FC = () => {
                 ref={canvasRef}
                 onMouseDown={mouseDownHandler}
                 onMouseUp={mouseUpHandler}
-                onMouseMove={draw}
+                onMouseMove={drawMouse}
+                onTouchStart={touchStartHandler}
+                onTouchMove={drawTouch}
+                onTouchEnd={touchEndHandler}
                 width={`1280px`}
                 height={`720px`}
             />
