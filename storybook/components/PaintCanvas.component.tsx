@@ -1,6 +1,5 @@
 import React, { FC, MouseEventHandler, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
-import getClientXY from 'get-client-xy';
 
 const PaintCanvas: FC = () => {
     // state management
@@ -34,14 +33,14 @@ const PaintCanvas: FC = () => {
 
     // functions for drawing functionality
     const startMouseDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        const [x, y] = getClientXY(event.nativeEvent);
+        const [x, y] = [event.nativeEvent.offsetX, event.nativeEvent.offsetY]
         ctxRef.current!.beginPath();
         ctxRef.current!.moveTo(x, y);
         setIsDrawing(true);
     }
 
     const startTouchDrawing = (event: React.TouchEvent<HTMLCanvasElement>) => {
-        const [x, y] = getClientXY(event.nativeEvent);
+        const [x, y] = [event.nativeEvent.touches[0].clientX, event.nativeEvent.touches[0].clientY];
         ctxRef.current!.beginPath();
         ctxRef.current!.moveTo(x, y);
         setIsDrawing(true);
@@ -52,7 +51,7 @@ const PaintCanvas: FC = () => {
     }
 
     const drawMouse = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        const [x, y] = getClientXY(event.nativeEvent);
+        const [x, y] = [event.nativeEvent.offsetX, event.nativeEvent.offsetY]
         if (!isDrawing) {
             return;
         }
@@ -61,7 +60,7 @@ const PaintCanvas: FC = () => {
     }
 
     const drawTouch = (event: React.TouchEvent<HTMLCanvasElement>) => {
-        const [x, y] = getClientXY(event.nativeEvent);
+        const [x, y] = [event.nativeEvent.touches[0].clientX, event.nativeEvent.touches[0].clientY];
         if (!isDrawing) {
             return;
         }
