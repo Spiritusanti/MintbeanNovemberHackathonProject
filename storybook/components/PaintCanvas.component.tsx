@@ -7,7 +7,7 @@ import { RoughGenerator } from "roughjs/bin/generator";
 // global functions to hook in roughjs
 const generator = new RoughGenerator();
 function createElement(x1: number, y1: number, x2: number, y2: number) {
-    const roughElement = generator.line(x1, y1, x2, y2);
+    const roughElement = generator.linearPath([[x1, y2]]);
     return { x1, y1, x2, y2, roughElement }
 }
 
