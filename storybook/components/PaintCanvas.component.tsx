@@ -1,78 +1,124 @@
-import React, { FC, useState, useLayoutEffect } from "react";
-import { RoughCanvas } from "roughjs/bin/canvas";
-import { Drawable } from "roughjs/bin/core";
-import { RoughGenerator } from "roughjs/bin/generator";
-// import PaintMenu from "./PaintMenu.component";
-
-// global functions to hook in roughjs
-const generator = new RoughGenerator();
-function createElement(x1: number, y1: number, x2: number, y2: number) {
-    const roughElement = generator.linearPath([[x1, y2]]);
-    return { x1, y1, x2, y2, roughElement }
-}
-
-interface Element {
-    x1: number;
-    y1: number;
-    x2: number;
-    y2: number;
-    roughElement: Drawable;
+import React, { FC, useEffect, useRef, useState } from "react";
+import PaintMenu from "./PaintMenu.component";
+import { v4 as uuidv4, v4 } from 'uuid';
+type coordinates = [x: number, y: number]
+interface CurrentPath {
+    id: string;
+    data: coordinates[]
 }
 
 
 const PaintCanvas: FC = () => {
-    const [elements, setElements] = useState<Element[]>([]);
-    const [drawing, setDrawing] = useState(false);
+    // state management
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+    const [isDrawing, setIsDrawing] = useState(false);
+    const [isFilling, setIsFilling] = useState(false);
+    const [elements, setElements] = useState<any[]>([])
+    const [currentPath, setCurrentPath] = useState<CurrentPath>();
+    const [toolType, setToolType] = useState("brush");
+    const [lineWidth, setLineWidth] = useState(5);
+    const [lineColor, setLineColor] = useState("black");
+    const [lineOpacity, setLineOpacity] = useState(0.1);
 
-    // useLayoutEffect for handling DOM events
-    useLayoutEffect(() => {
-        const canvas: HTMLCanvasElement = document.querySelector("canvas")!;
-        const context = canvas.getContext('2d')
-        context!.clearRect(0, 0, canvas.width, canvas.height)
-        const roughCanvas = new RoughCanvas(canvas)
-        elements.forEach((element) => {
-            roughCanvas.draw(element.roughElement);
-        })
+    console.log('toolType: ', toolType, 'isDrawing: ', isDrawing, 'isFilling: ', isFilling, "Elements: ", elements);
+    let currentPathCoordinates: coordinates[] = [];
+    // initializing when the component mounts for the first time
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) {
+            return;
+        }
+        const ctx = canvas!.getContext('2d');
+        ctx!.lineCap = "round";
+        ctx!.lineJoin = "round";
+        ctx!.globalAlpha = lineOpacity;
+        ctx!.strokeStyle = lineColor;
+        ctx!.lineWidth = lineWidth;
+        ctxRef.current = ctx!;
+    }, [lineWidth, lineColor, lineOpacity]);
 
-    });
 
-    // eventHandler functions
-    const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        setDrawing(true);
-        const { clientX, clientY } = event;
-        const element = createElement(clientX, clientY, clientX, clientY)
-        setElements(prevState => [...prevState, element])
+    // function for starting the drawing
+    const startDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
+        ctxRef.current!.beginPath();
+        ctxRef.current!.moveTo(
+            event.nativeEvent.offsetX,
+            event.nativeEvent.offsetY,
+        );
+        setIsDrawing(true);
     }
 
-    const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        if (!drawing) return;
-        const { clientX, clientY } = event;
-        const index = elements.length - 1;
-        const { x1, y1 } = elements[index];
-        const updatedElement = createElement(x1, y1, clientX, clientY)
 
-        const elementsCopy = [...elements];
-        elementsCopy[index] = updatedElement;
-        setElements(elementsCopy);
+    // function for ending drawing
+    const endDrawing = () => {
+        ctxRef.current?.closePath();
+        setIsDrawing(false);
+        const currentPathObject: CurrentPath = { id: v4(), data: currentPathCoordinates };
+        setElements((prevState) => [...prevState, currentPathObject]);
     }
 
-    const handleMouseUp = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        setDrawing(false);
+    // draw function
+    const draw = (event: React.MouseEvent<HTMLCanvasElement>) => {
+        if (!isDrawing) {
+            return;
+        }
+        ctxRef.current!.lineTo(
+            event.nativeEvent.offsetX,
+            event.nativeEvent.offsetY
+        )
+        currentPathCoordinates.push([event.nativeEvent.offsetX, event.nativeEvent.offsetY])
+        ctxRef.current!.stroke();
+    }
+
+    // fill functionality
+    const startFill = (event: React.MouseEvent<HTMLCanvasElement>) => {
+        setIsFilling(true);
+        ctxRef.current!.fillStyle = lineColor
+        ctxRef.current!.fill()
+    }
+    // function on end filling
+    const endFill = () => {
+        setIsFilling(false)
     }
 
 
+    // onClick handler for switching between tools
+    const toolBtnHandler = () => {
+        // if current tool is brush - set to fill or vice versa
+        if (toolType === "brush") {
+            setToolType('fill')
+        }
+        if (toolType === "fill") {
+            setToolType("brush")
+        }
+    }
+
+
+    // conditional mouse handlers
+    let mouseDownHandler;
+    let mouseUpHandler;
+    if (toolType === "brush") {
+        mouseDownHandler = startDrawing;
+        mouseUpHandler = endDrawing;
+    }
+
+    if (toolType === "fill") {
+        mouseUpHandler = startFill;
+        mouseDownHandler = endFill;
+    }
     return (
         <section>
+            <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} />
+            <button type="button" onClick={toolBtnHandler}>{toolType}</button>
             <canvas
-                id="canvas"
-                width={window.innerWidth}
-                height={window.innerHeight}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-            >
-                Canvas
-            </canvas>
+                ref={canvasRef}
+                onMouseDown={mouseDownHandler}
+                onMouseUp={mouseUpHandler}
+                onMouseMove={draw}
+                width={`1280px`}
+                height={`720px`}
+            />
         </section>
     )
 }
