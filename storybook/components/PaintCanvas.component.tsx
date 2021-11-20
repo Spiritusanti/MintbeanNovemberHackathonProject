@@ -104,8 +104,8 @@ const PaintCanvas: FC = () => {
                 onTouchStart={startTouchDrawing}
                 onTouchEnd={endTouchDrawing}
                 onTouchMove={drawWithTouch}
-                width={`1280px`}
-                height={`720px`}
+                width={window.innerWidth}
+                height={window.innerHeight}
             />
         </section>
     )
