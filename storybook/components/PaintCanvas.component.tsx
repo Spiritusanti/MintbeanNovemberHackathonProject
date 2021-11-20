@@ -13,9 +13,10 @@ const PaintCanvas: FC = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [lineWidth, setLineWidth] = useState(5);
-    const [lineColor, setLineColor] = useState("black");
-    const [lineOpacity, setLineOpacity] = useState(0.1);
+    const [lineWidth, setLineWidth] = useState<number>(50);
+    const [lineColor, setLineColor] = useState<string>("black");
+    const [toolType, setToolType] = useState<string>("brush");
+    const [lineOpacity, setLineOpacity] = useState<number>(0.1);
 
     // initializing when the component mounts for the first time
     useEffect(() => {
@@ -93,9 +94,24 @@ const PaintCanvas: FC = () => {
     }
 
 
+    // set Eraser active
+    useEffect(() => {
+        if (toolType === 'brush') {
+            setLineColor("black")
+            setLineOpacity(1)
+            setLineWidth(5)
+        }
+        if (toolType === "eraser") {
+            setLineColor("white");
+            setLineOpacity(1);
+            setLineWidth(50);
+        }
+    }, [toolType]);
+
+
     return (
         <section>
-            <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} />
+            <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} />
             <canvas
                 ref={canvasRef}
                 onMouseDown={startMouseDrawing}

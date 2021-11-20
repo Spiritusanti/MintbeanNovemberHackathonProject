@@ -3,10 +3,11 @@ interface PaintMenuProps {
     setLineColor: Dispatch<SetStateAction<string>>;
     setLineWidth: Dispatch<SetStateAction<number>>;
     setLineOpacity: Dispatch<SetStateAction<number>>;
+    setToolType: Dispatch<SetStateAction<string>>;
 }
 
 
-const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpacity }) => {
+const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpacity, setToolType }) => {
     // event handlers
     const brushColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const color = event.target.value;
@@ -23,6 +24,11 @@ const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpac
         setLineOpacity(opacity);
     }
 
+    const toolTypeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const toolType = event.target.value;
+        setToolType(toolType);
+    }
+
     return (
         <menu>
             <label htmlFor="brush-color">Brush Color</label>
@@ -31,6 +37,11 @@ const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpac
             <input type="range" min="3" max="20" onChange={brushWidthHandler} />
             <label htmlFor="brush-color">Brush Opacity</label>
             <input type="range" min="1" max="100" onChange={brushOpacityHandler} />
+            <label htmlFor="tool-type">Select Tool</label>
+            <label htmlFor="brush-tool">Brush</label>
+            <input type="radio" name="tool-type" id="brush-tool" value="brush" checked={true} onChange={toolTypeHandler} />
+            <label htmlFor="eraser-tool">Eraser</label>
+            <input type="radio" name="tool-type" id="eraser-tool" value="eraser" onChange={toolTypeHandler} />
         </menu>
     )
 }
