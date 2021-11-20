@@ -13,16 +13,10 @@ const PaintCanvas: FC = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [isFilling, setIsFilling] = useState(false);
-    const [elements, setElements] = useState<any[]>([])
-    const [currentPath, setCurrentPath] = useState<CurrentPath>();
-    const [toolType, setToolType] = useState("brush");
     const [lineWidth, setLineWidth] = useState(5);
     const [lineColor, setLineColor] = useState("black");
     const [lineOpacity, setLineOpacity] = useState(0.1);
 
-    console.log('toolType: ', toolType, 'isDrawing: ', isDrawing, 'isFilling: ', isFilling, "Elements: ", elements);
-    let currentPathCoordinates: coordinates[] = [];
     // initializing when the component mounts for the first time
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -38,9 +32,9 @@ const PaintCanvas: FC = () => {
         ctxRef.current = ctx!;
     }, [lineWidth, lineColor, lineOpacity]);
 
-
+    /*Section for MouseEvents */
     // function for starting the drawing
-    const startDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const startMouseDrawing = (event: React.MouseEvent<HTMLCanvasElement>) => {
         ctxRef.current!.beginPath();
         ctxRef.current!.moveTo(
             event.nativeEvent.offsetX,
@@ -51,15 +45,13 @@ const PaintCanvas: FC = () => {
 
 
     // function for ending drawing
-    const endDrawing = () => {
-        ctxRef.current?.closePath();
+    const endMouseDrawing = () => {
+        ctxRef.current!.closePath();
         setIsDrawing(false);
-        const currentPathObject: CurrentPath = { id: v4(), data: currentPathCoordinates };
-        setElements((prevState) => [...prevState, currentPathObject]);
     }
 
     // draw function
-    const draw = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const drawWithMouse = (event: React.MouseEvent<HTMLCanvasElement>) => {
         if (!isDrawing) {
             return;
         }
@@ -67,55 +59,51 @@ const PaintCanvas: FC = () => {
             event.nativeEvent.offsetX,
             event.nativeEvent.offsetY
         )
-        currentPathCoordinates.push([event.nativeEvent.offsetX, event.nativeEvent.offsetY])
         ctxRef.current!.stroke();
     }
 
-    // fill functionality
-    const startFill = (event: React.MouseEvent<HTMLCanvasElement>) => {
-        setIsFilling(true);
-        ctxRef.current!.fillStyle = lineColor
-        ctxRef.current!.fill()
-    }
-    // function on end filling
-    const endFill = () => {
-        setIsFilling(false)
+    /*Section for mobile TouchEvents */
+    // function for starting the drawing
+    const startTouchDrawing = (event: React.TouchEvent<HTMLCanvasElement>) => {
+        ctxRef.current!.beginPath();
+        ctxRef.current!.moveTo(
+            event.nativeEvent.touches[0].clientX,
+            event.nativeEvent.touches[0].clientY,
+        );
+        setIsDrawing(true);
     }
 
 
-    // onClick handler for switching between tools
-    const toolBtnHandler = () => {
-        // if current tool is brush - set to fill or vice versa
-        if (toolType === "brush") {
-            setToolType('fill')
+    // function for ending drawing
+    const endTouchDrawing = () => {
+        ctxRef.current!.closePath();
+        setIsDrawing(false);
+    }
+
+    // draw function
+    const drawWithTouch = (event: React.TouchEvent<HTMLCanvasElement>) => {
+        if (!isDrawing) {
+            return;
         }
-        if (toolType === "fill") {
-            setToolType("brush")
-        }
+        ctxRef.current!.lineTo(
+            event.nativeEvent.touches[0].clientX,
+            event.nativeEvent.touches[0].clientY
+        )
+        ctxRef.current!.stroke();
     }
 
 
-    // conditional mouse handlers
-    let mouseDownHandler;
-    let mouseUpHandler;
-    if (toolType === "brush") {
-        mouseDownHandler = startDrawing;
-        mouseUpHandler = endDrawing;
-    }
-
-    if (toolType === "fill") {
-        mouseUpHandler = startFill;
-        mouseDownHandler = endFill;
-    }
     return (
         <section>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} />
-            <button type="button" onClick={toolBtnHandler}>{toolType}</button>
             <canvas
                 ref={canvasRef}
-                onMouseDown={mouseDownHandler}
-                onMouseUp={mouseUpHandler}
-                onMouseMove={draw}
+                onMouseDown={startMouseDrawing}
+                onMouseUp={endMouseDrawing}
+                onMouseMove={drawWithMouse}
+                onTouchStart={startTouchDrawing}
+                onTouchEnd={endTouchDrawing}
+                onTouchMove={drawWithTouch}
                 width={`1280px`}
                 height={`720px`}
             />
