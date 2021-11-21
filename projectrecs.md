@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-hello Jacob :3
-=======
 # Project requirements
 ## from mintbean
 1. As a user, I can drag my mouse across the screen to make free-form lines.
@@ -19,4 +16,3 @@ hello Jacob :3
 
 ## Design reqs
 1. mobile first
->>>>>>> main
