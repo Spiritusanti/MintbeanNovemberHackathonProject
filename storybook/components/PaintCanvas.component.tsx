@@ -1,12 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
-import { v4 as uuidv4, v4 } from 'uuid';
-type coordinates = [x: number, y: number]
-interface CurrentPath {
-    id: string;
-    data: coordinates[]
-}
-
 
 const PaintCanvas: FC = () => {
     // state management
@@ -109,9 +102,14 @@ const PaintCanvas: FC = () => {
     }, [toolType]);
 
 
+    // reset handler
+    const onClearCanvas = () => {
+        ctxRef.current!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+    }
+
     return (
         <section>
-            <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} />
+            <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
                 ref={canvasRef}
                 onMouseDown={startMouseDrawing}
