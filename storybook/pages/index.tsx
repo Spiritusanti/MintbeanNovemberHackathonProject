@@ -2,10 +2,27 @@ import type { NextPage } from 'next'
 import Image from "next/image";
 import Link from 'next/link';
 import Header from '../components/Header.component'
-import Card from '../components/Card.component';
+import Bio from '../components/Bio.component';
 import Footer from "../components/Footer.component";
 import placeholder from '../public/Fates_of_Orbit_by_Bougal-992x956.jpg';
 import styles from '../styles/Home.module.css'
+import { v4 } from 'uuid';
+
+const bioPlaceholder = [
+  {
+    name: "Jacob McCracken",
+    title: "Web Developer",
+    blurb: "lorem ipsum dolor set",
+    social: ["twitter", "github", "linkedIn", "portfolio"]
+  },
+  {
+    name: "Chris Toribio",
+    title: "UX Designer",
+    blurb: "lorem ipsum dolor set",
+    social: ["twitter", "github", "Portfolio"]
+  }
+]
+
 
 const Home: NextPage = () => {
 
@@ -40,16 +57,9 @@ const Home: NextPage = () => {
       </section>
       <section>
         <h1>Meet the team</h1>
-        <ul>
-          <li>
-            <Card>
-              <h1>Jacob McCracken</h1>
-            </Card>
-          </li>
-          <li>
-            <h1>Chris Toribio</h1>
-          </li>
-        </ul>
+        <div>
+          {bioPlaceholder.map(bio => <Bio key={v4()} name={bio.name} title={bio.title} blurb={bio.blurb} social={bio.social} />)}
+        </div>
       </section>
       <section>
         <Footer />
