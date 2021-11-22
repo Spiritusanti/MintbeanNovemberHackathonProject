@@ -2,13 +2,14 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
 
 interface CanvasProps {
-    canvasIsSaved: boolean;
     onSaveCanvas: (imageUri: string) => void;
     onNextScene: () => void;
+    currentPromptNumber: number;
+    promptsLength: number;
 }
 
 
-const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene }) => {
+const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPromptNumber, promptsLength }) => {
     // state management
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -17,7 +18,7 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
     const [lineColor, setLineColor] = useState<string>("black");
     const [toolType, setToolType] = useState<string>("brush");
     const [lineOpacity, setLineOpacity] = useState<number>(0.1);
-
+    const storyComplete = promptsLength === currentPromptNumber;
     // initializing when the component mounts for the first time
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -122,6 +123,7 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
         onNextScene();
     }
 
+
     return (
         <section>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
@@ -137,7 +139,8 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
                 height={window.innerHeight}
             />
             <div>
-                <button onClick={saveCanvasHandler}>Save</button>
+                {!storyComplete && <button onClick={saveCanvasHandler}>Save</button>}
+                {storyComplete && <button onClick={saveCanvasHandler}>See the result!</button>}
             </div>
         </section>
     )
