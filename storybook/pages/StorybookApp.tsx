@@ -85,10 +85,10 @@ const StorybookApp: NextPage = () => {
     // if story selected
     if (storySelected && story && promptTracker) {
         content =
-            <Fragment>
+            <div className="flex-col-center buttonContainer">
                 <Prompt prompt={story.prompts[currentPromptNumber]} promptTracker={promptTracker} />
                 <PaintCanvas onNextScene={onNextScene} onSaveCanvas={onSaveCanvas} canvasIsSaved={canvasIsSaved} />
-            </Fragment>
+            </div>
     }
     // if Story finished
     if (currentPromptNumber === story?.prompts.length) {
@@ -99,7 +99,9 @@ const StorybookApp: NextPage = () => {
 
     return (
         <article>
+          <nav className="nav">
             <Header title={story ? story.title : ""} />
+            </nav>
             <section>
                 {content}
             </section>

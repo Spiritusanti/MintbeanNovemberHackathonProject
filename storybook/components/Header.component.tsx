@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useRouter } from "next/dist/client/router";
 import Link from 'next/link';
+import styles from "./Header.module.css"
 
 interface HeaderProps {
     title: string | null;
@@ -11,15 +12,17 @@ const Header: FC<HeaderProps> = ({ title }) => {
 
     let headerContent;
     if (router.pathname === "/") {
-        headerContent = <div className="flex-row-center menu">
-            <div className="menu-item">
+        headerContent = <div className={
+            `${styles.menu} flex-row-center`
+        }>
+            <div className={`${styles.menuItem}`}>
                 <Link href="/#tutorial">Tutorial</Link>
             </div>
-            <div className="menu-item">
+            <div className={`${styles.menuItem}`}>
                 <Link href="/#about-us">About Us</Link>
             </div>
-            <div className="menu-item">
-                <Link href="/StorybookApp" passHref><button className="secondary">TRY FOR FREE</button></Link>
+            <div className={`${styles.menuItem}`}>
+                <Link href="/StorybookApp"><button className="secondary">TRY FOR FREE</button></Link>
             </div>
        </div>
     }
@@ -28,7 +31,7 @@ const Header: FC<HeaderProps> = ({ title }) => {
         headerContent = <div><p>{title}</p></div>
     }
     return (
-        <header className="flex-row-center branding">
+        <header className={`${styles.header} flex-row-center`}>
             <Link href="/" passHref>
                 <h1>STORYBOOK</h1>
             </Link>

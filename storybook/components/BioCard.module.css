@@ -1,0 +1,26 @@
+/* Bio Card Styling */
+
+.card {
+	color: var(--light);
+	background-color: var(--primary-color);
+	align-self: stretch;
+	border-radius: 8px;
+	box-shadow: 0px 4px 8px 0px #2e4d5840;
+	margin: 0 1.563rem;
+}
+
+.image {
+	border-radius: 8px 8px 0 0;
+}
+
+.cardBody {
+	height: 100%;
+	align-self: stretch;
+	justify-content: space-between;
+}
+
+.cardHead h1, .cardBody h3 {
+    font-size: 1rem;
+    margin: 10px 0px;
+  }
+  
