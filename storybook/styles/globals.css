@@ -6,7 +6,7 @@ body {
   --hover-color:#4C7B8C;
   --sky-color: #E5FDFF;
   --light: white;
-  --dark: #212121
+  --dark: #212121;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -43,7 +43,7 @@ a {
   align-items: center;
 }
 
-.flexColCenter {
+.flex-col-center {
   display: flex;
   flex-direction: column;
   align-items: center;
