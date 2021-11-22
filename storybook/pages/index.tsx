@@ -19,7 +19,7 @@ const bioPlaceholder = [
     name: "Chris Toribio",
     title: "UX Designer",
     blurb: "lorem ipsum dolor set",
-    social: ["twitter", "github", "Portfolio"]
+    social: ["twitter", "github", "portfolio"]
   }
 ]
 
@@ -29,39 +29,50 @@ const Home: NextPage = () => {
 
 
   return (
-    <article>
-      <Header title={null} />
-      <section>
-        <div>
-          <h1>Storybook lets you set your imagination free</h1>
-          <p>Dive into our collection of short stories and bring them to life with your own illustrations!</p>
-          <Link href="/StorybookApp">Try for Free</Link>
-        </div>
-        <div>
-          <Image src={placeholder} alt="hero image"></Image>
-        </div>
-      </section>
-      <section>
-        <div>
-          <ul>
-            <li><p>Choose a story from our collection</p></li>
-            <li><p>Use the tools to draw the scene in the drawing area</p></li>
-            <li><p>Use your imagination as you illustrate each scene of the story</p></li>
-            <li><p>Download a copy of your storybook complete with all your drawings</p></li>
-            <li><p>Share with your friends!</p></li>
-          </ul>
-        </div>
-        <div>
-          <Image src={placeholder} alt="demo image"></Image>
+    <article className="flex-col-center">
+      <nav className="flex-col-center nav">
+        <Header title={null} />
+      </nav>
+      <section className="flex-col-center bg-light">
+        <div className="flex-row-center content">
+          <div className="hero-content">
+            <h1>Storybook lets you set your imagination free</h1>
+            <h3>Dive into our collection of short stories and bring them to life with your own illustrations!</h3>
+            <button><Link href="/StorybookApp"><strong>TRY FOR FREE</strong></Link></button>
+          </div>
+          <div className="hero-content">
+            <Image src={placeholder} alt="hero image"></Image> 
+          </div>
         </div>
       </section>
-      <section>
-        <h1>Meet the team</h1>
-        <div>
-          {bioPlaceholder.map(bio => <Bio key={v4()} name={bio.name} title={bio.title} blurb={bio.blurb} social={bio.social} />)}
+      <section className="flex-col-center tutorial">
+        <div className="flex-row-center content">
+          <div className="flex-col">
+            <h1>How it Works</h1>
+            <div>
+              <ol>
+                <li><p>Choose a story from our collection</p></li>
+                <li><p>Use the tools to draw the scene in the drawing area</p></li>
+                <li><p>Use your imagination as you illustrate each scene of the story</p></li>
+                <li><p>Download a copy of your storybook complete with all your drawings</p></li>
+                <li><p>Share with your friends!</p></li>
+              </ol>
+            </div>
+          </div>
+          <div>
+            <Image src={placeholder} alt="demo image"></Image>
+          </div>
         </div>
       </section>
-      <section>
+      <section className="flex-col-center bg-light">
+        <div className="flex-col-center content">
+          <h1>Meet the Team</h1>
+          <div className="flex-row-center card-container">
+            {bioPlaceholder.map(bio => <Bio key={v4()} name={bio.name} title={bio.title} blurb={bio.blurb} social={bio.social} />)}
+          </div>
+        </div>
+      </section>
+      <section className="flex-col-center footer">
         <Footer />
       </section>
     </article>

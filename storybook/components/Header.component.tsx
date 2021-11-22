@@ -11,26 +11,26 @@ const Header: FC<HeaderProps> = ({ title }) => {
 
     let headerContent;
     if (router.pathname === "/") {
-        headerContent = <ul>
-            <li>
+        headerContent = <div className="flex-row-center menu">
+            <div className="menu-item">
                 <Link href="/#tutorial">Tutorial</Link>
-            </li>
-            <li>
+            </div>
+            <div className="menu-item">
                 <Link href="/#about-us">About Us</Link>
-            </li>
-            <li>
-                <Link href="/StorybookApp">Try for free</Link>
-            </li>
-        </ul>
+            </div>
+            <div className="menu-item">
+                <button className="secondary"><Link href="/StorybookApp"><strong>TRY FOR FREE</strong></Link></button>
+            </div>
+       </div>
     }
 
     if (router.pathname === "/StorybookApp") {
         headerContent = <div><p>{title}</p></div>
     }
     return (
-        <header>
+        <header className="flex-row-center branding">
             <Link href="/" passHref>
-                <h1>storybook</h1>
+                <h1>STORYBOOK</h1>
             </Link>
             {headerContent}
         </header>
