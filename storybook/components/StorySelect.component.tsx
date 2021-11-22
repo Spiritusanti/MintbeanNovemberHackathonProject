@@ -15,7 +15,6 @@ const StorySelect: FC<StorySelectProps> = ({ stories, setSelectedStory }) => {
     // set user selected story
     const userSelectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const title = event.target.value;
-        console.log(title);
         setUserSelection(title);
     }
 

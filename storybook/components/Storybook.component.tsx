@@ -29,17 +29,18 @@ const Storybook: FC<StorybookProps> = ({ title, prompts, images }) => {
     useEffect(() => {
         const story = combineStoryEls()
         setIllustratedStory(story)
-    }, [combineStoryEls])
+    }, [combineStoryEls]);
+
     return (
         <section>
             <h1>{title}</h1>
             <div>
                 <ul>
                     {illustratedStory.length > 0 ? illustratedStory.map((story) => {
-                        console.log(story.image);
+                        const currentImage: string = `${story.image}`;
                         return (<li key={v4()}>
                             <p>{story.prompt}</p>
-                            <Image src={story.image} alt={story.prompt} width={500} height={500}></Image>
+                            <img src={currentImage} alt={title} />
                         </li>)
                     }) : <p>The story has yet to begin!</p>}
                 </ul>

@@ -88,12 +88,12 @@ const StorybookApp: NextPage = () => {
     if (storySelected && story && promptTracker) {
         content =
             <div className="flex-col-center buttonContainer">
-                <Prompt prompt={story.prompts[currentPromptNumber]} promptTracker={promptTracker} />
+                <Prompt prompt={story.prompts[currentPromptNumber - 1]} promptTracker={promptTracker} />
                 <PaintCanvas onNextScene={onNextScene} onSaveCanvas={onSaveCanvas} canvasIsSaved={canvasIsSaved} />
             </div>
     }
     // if Story finished
-    if (currentPromptNumber === story?.prompts.length) {
+    if (story && currentPromptNumber === story?.prompts.length + 1) {
         content = <Fragment>
             <Storybook title={story.title} prompts={story.prompts} images={userGeneratedImages} />
         </Fragment>
