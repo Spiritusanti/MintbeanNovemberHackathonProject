@@ -31,12 +31,14 @@ const StorybookApp: NextPage = () => {
 
     return (
         <article>
-            <Header title={story.title} />
-            <section className="bg-light">
+            <nav className="nav">
+                <Header title={story.title} />
+            </nav>
+            <section>
                 <Prompt prompt={story.prompts[currentPromptNumber]} promptTracker={promptTracker} />
                 {!showPaintCanvas && <p>Loading...</p>}
                 {showPaintCanvas && <PaintCanvas />}
-                <div>
+                <div className="flex-col-center buttonContainer">
                     {!canvasIsSaved && <button onClick={onSaveCanvas}>Save</button>}
                     {canvasIsSaved && <button onClick={onNextScene}>Next Scene</button>}
                 </div>

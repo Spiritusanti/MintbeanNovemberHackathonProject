@@ -1,0 +1,27 @@
+/* Header Styling */
+
+.header {
+	justify-content: space-between;
+	padding: 1.25rem 1.25rem;
+	width: 100%;
+} /* also for footer contents */
+
+.header h1 {
+    font-size: 1rem;
+    margin: 10px 0px;
+  }
+
+.header h1:hover {
+	cursor: pointer;
+}
+
+
+.menuItem {
+	padding: 0 20px;
+}
+
+.menuItem:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+

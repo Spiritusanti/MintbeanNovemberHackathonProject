@@ -1,0 +1,16 @@
+/* Footer Styling */
+
+.imageLink > p {
+	padding-left: 0.75rem;
+}
+
+.imageLink > p:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.footerContents {
+    justify-content: space-between;
+    padding: 1.25rem 1.25rem;
+    width: 100%;
+  }
