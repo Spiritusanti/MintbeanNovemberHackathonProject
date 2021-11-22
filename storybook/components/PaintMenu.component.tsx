@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC, Dispatch, SetStateAction, useState, Fragment } from "react";
 import styles from "./PaintMenu.module.css";
 
 interface PaintMenuProps {
@@ -9,37 +9,37 @@ interface PaintMenuProps {
 	onClearCanvas: () => void;
 }
 
-const PaintMenu: FC<PaintMenuProps> = ({
-	setLineColor,
-	setLineWidth,
-	setLineOpacity,
-	setToolType,
-	onClearCanvas,
-}) => {
-	// event handlers
-	const brushColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const color = event.target.value;
-		setLineColor(color);
-	};
+const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpacity, setToolType, onClearCanvas }) => {
+    const [showSliders, setShowSliders] = useState<boolean>(false);
+    // event handlers
+    const brushColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const color = event.target.value;
+        setLineColor(color)
+    }
 
-	const brushWidthHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const width = event.target.value;
-		setLineWidth(+width);
-	};
+    const brushWidthHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const width = event.target.value
+        setLineWidth(+width);
+    }
 
-	const brushOpacityHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const opacity = +event.target.value / 100;
-		setLineOpacity(opacity);
-	};
+    const brushOpacityHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const opacity = +event.target.value / 100;
+        setLineOpacity(opacity);
+    }
 
-	// onClick handlers for tool selection buttons
-	const selectBrushHandler = () => {
-		setToolType("brush");
-	};
+    // onClick handlers for tool selection buttons
+    const selectBrushHandler = () => {
+        setToolType('brush');
+    }
 
-	const selectEraserHandler = () => {
-		setToolType("eraser");
-	};
+    const selectEraserHandler = () => {
+        setToolType('eraser');
+    }
+
+    // onClick handler for showSliders
+    const showSlidersHanlder = () => {
+        setShowSliders((prevState) => !prevState);
+    }
 
 	return (
 		<menu className={`${styles.toolContainer} flex-col-center`}>
@@ -86,6 +86,7 @@ const PaintMenu: FC<PaintMenuProps> = ({
 					</label>
 					<input type="color" onChange={brushColorHandler} className={`${styles.colorPicker}`} />
 				</div>
+        { showSliders && <Fragment>
 				<div className="flex-col-center">
 					<label htmlFor="brush-color">Brush Width</label>
 					<input type="range" min="3" max="20" onChange={brushWidthHandler} />
@@ -99,6 +100,8 @@ const PaintMenu: FC<PaintMenuProps> = ({
 						onChange={brushOpacityHandler}
 					/>
 				</div>
+          </Fragment>}
+        <button onClick={showSlidersHandler} className={stlyes.round}>Show Sliders</button>
 				<button onClick={onClearCanvas} className={`${styles.round}`}>
 					Reset
 				</button>
@@ -106,5 +109,9 @@ const PaintMenu: FC<PaintMenuProps> = ({
 		</menu>
 	);
 };
+
+
+
+
 
 export default PaintMenu;
