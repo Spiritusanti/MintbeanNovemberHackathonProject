@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
+import styles from "./PaintCanvas.module.css";
 
 interface CanvasProps {
     canvasIsSaved: boolean;
@@ -122,6 +123,7 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
 
     return (
         <section>
+            <div  className={`${styles.canvasContainer}`}>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
                 ref={canvasRef}
@@ -134,7 +136,8 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
                 width={window.innerWidth}
                 height={window.innerHeight}
             />
-            <div>
+            </div>
+            <div className={`${styles.buttonContainer} flex-col-center`}>
                 {!canvasIsSaved && <button onClick={saveCanvasHandler}>Save</button>}
                 {canvasIsSaved && <button onClick={onNextScene}>Next Scene</button>}
             </div>

@@ -20,11 +20,11 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-/* input{
+input{
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
-  }*/
+  }
 
 a {
   color: inherit;
@@ -126,22 +126,3 @@ button.secondary:hover {
   background-position-y: center;
 }
 
-
-/*******************************
-
-
----------------------
-STORYBOOK APP STYLING
----------------------
-
-
-********************************/
-.buttonContainer {
-  margin: 10px;
-}
-
-.canvas-container {
-  margin: 0 10px;
-  background-color: var(--light);
-  border: 3px solid var(--primary-color);
-}

@@ -15,8 +15,43 @@
 }
 
 .round {
-  margin: 10px;
-  border-radius: 100%;
+	margin: 10px;
+	border-radius: 100%;
 }
 
+.sliderContainer {
+	justify-content: space-between;
+	padding: 15px;
+}
 
+.sliderContainer div {
+	width: 50%;
+	padding: 0px 20px;
+}
+
+/*From https://stackoverflow.com/questions/62225825/how-can-i-make-a-circular-input-type-color-element*/
+/* 
+.colorPicker {
+	opacity: 100;
+	position: absolute;
+	pointer-events: none;
+	height: 50px;
+}
+
+.colorBtn {
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	background: turquoise;
+	border: 1px solid grey;
+}
+
+.colorBtn:hover, 
+.colorPicker:focus + .colorBtn {
+  border-color: black;
+}
+
+.colorPicker:active + .colorBtn {
+  filter: brightness(90%);
+} */
