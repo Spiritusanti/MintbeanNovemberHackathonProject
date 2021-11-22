@@ -77,9 +77,19 @@ const StorybookApp: NextPage = () => {
         }
     }
 
+    // startNewStory handler
+    const startNewStory = () => {
+        setStorySelected(false);
+        setSelectedStory(null);
+        setCurrentPromptNumber(1);
+        setUserGeneratedImages([]);
+        setStory(null);
+    }
+
 
     // conditional rendering based on user interaction
     let content;
+    const storyComplete = story?.prompts.length === userGeneratedImages.length;
     // if no story selected;
     if (!storySelected) {
         content = <StorySelect stories={stories} setSelectedStory={setSelectedStory} />
@@ -89,13 +99,13 @@ const StorybookApp: NextPage = () => {
         content =
             <div className="flex-col-center buttonContainer">
                 <Prompt prompt={story.prompts[currentPromptNumber - 1]} promptTracker={promptTracker} />
-                <PaintCanvas onNextScene={onNextScene} onSaveCanvas={onSaveCanvas} canvasIsSaved={canvasIsSaved} />
+                <PaintCanvas onNextScene={onNextScene} onSaveCanvas={onSaveCanvas} promptsLength={story.prompts.length} currentPromptNumber={currentPromptNumber} />
             </div>
     }
     // if Story finished
-    if (story && currentPromptNumber === story?.prompts.length + 1) {
+    if (story && storyComplete) {
         content = <Fragment>
-            <Storybook title={story.title} prompts={story.prompts} images={userGeneratedImages} />
+            <Storybook title={story.title} prompts={story.prompts} images={userGeneratedImages} startNewStory={startNewStory} />
         </Fragment>
     }
 
