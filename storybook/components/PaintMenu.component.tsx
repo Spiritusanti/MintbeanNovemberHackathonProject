@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC, Dispatch, SetStateAction, useState, Fragment } from "react";
 interface PaintMenuProps {
     setLineColor: Dispatch<SetStateAction<string>>;
     setLineWidth: Dispatch<SetStateAction<number>>;
@@ -9,6 +9,7 @@ interface PaintMenuProps {
 
 
 const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpacity, setToolType, onClearCanvas }) => {
+    const [showSliders, setShowSliders] = useState<boolean>(false);
     // event handlers
     const brushColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const color = event.target.value;
@@ -34,6 +35,11 @@ const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpac
         setToolType('eraser');
     }
 
+    // onClick handler for showSliders
+    const showSlidersHanlder = () => {
+        setShowSliders((prevState) => !prevState);
+    }
+
 
     return (
         <menu className="flex-col-center tool-container">
@@ -44,14 +50,17 @@ const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpac
                     <label htmlFor="brush-color" hidden>Brush Color</label>
                     <input type="color" onChange={brushColorHandler} />
                 </div>
-                <div className="flex-col-center">
-                    <label htmlFor="brush-color">Brush Width</label>
-                    <input type="range" min="3" max="20" onChange={brushWidthHandler} />
-                </div>
-                <div className="flex-col-center">
-                    <label htmlFor="brush-color">Brush Opacity</label>
-                    <input type="range" min="1" max="100" onChange={brushOpacityHandler} />
-                </div>
+                {showSliders && <Fragment>
+                    <div className="flex-col-center">
+                        <label htmlFor="brush-color">Brush Width</label>
+                        <input type="range" min="3" max="20" onChange={brushWidthHandler} />
+                    </div>
+                    <div className="flex-col-center">
+                        <label htmlFor="brush-color">Brush Opacity</label>
+                        <input type="range" min="1" max="100" onChange={brushOpacityHandler} />
+                    </div>
+                </Fragment>}
+                <button onClick={showSlidersHanlder}>show sliders</button>
                 <button onClick={onClearCanvas}>Reset</button>
             </div>
         </menu>

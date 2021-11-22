@@ -1,7 +1,14 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
 
-const PaintCanvas: FC = () => {
+interface CanvasProps {
+    canvasIsSaved: boolean;
+    onSaveCanvas: (imageUri: string) => void;
+    onNextScene: () => void;
+}
+
+
+const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene }) => {
     // state management
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -107,8 +114,14 @@ const PaintCanvas: FC = () => {
         ctxRef.current!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
     }
 
+    // saveCanvas handler
+    const saveCanvasHandler = () => {
+        const uri: string = canvasRef.current!.toDataURL();
+        onSaveCanvas(uri);
+    }
+
     return (
-        <section className="canvas-container flex-col-center">
+        <section>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
                 ref={canvasRef}
@@ -121,6 +134,10 @@ const PaintCanvas: FC = () => {
                 width={window.innerWidth}
                 height={window.innerHeight}
             />
+            <div>
+                {!canvasIsSaved && <button onClick={saveCanvasHandler}>Save</button>}
+                {canvasIsSaved && <button onClick={onNextScene}>Next Scene</button>}
+            </div>
         </section>
     )
 }
