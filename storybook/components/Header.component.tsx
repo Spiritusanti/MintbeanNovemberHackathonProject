@@ -22,9 +22,9 @@ const Header: FC<HeaderProps> = ({ title }) => {
                 <Link href="/#about-us">About Us</Link>
             </div>
             <div className={`${styles.menuItem}`}>
-                <Link href="/StorybookApp"><button className="secondary">TRY FOR FREE</button></Link>
+                <Link href="/StorybookApp" passHref><button className="secondary">TRY FOR FREE</button></Link>
             </div>
-       </div>
+        </div>
     }
 
     if (router.pathname === "/StorybookApp") {
