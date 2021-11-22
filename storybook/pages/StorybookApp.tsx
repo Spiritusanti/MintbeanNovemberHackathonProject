@@ -37,18 +37,12 @@ const stories = [
 
 
 const StorybookApp: NextPage = () => {
-    const [storySelected, setStorySelected] = useState<boolean>(true)
+    const [storySelected, setStorySelected] = useState<boolean>(false)
     const [selectedStory, setSelectedStory] = useState<string | null>(null);
     const [currentPromptNumber, setCurrentPromptNumber] = useState<number>(1);
     const [userGeneratedImages, setUserGeneratedImages] = useState<string[]>([]);
-    // const [story, setStory] = useState<story | null>(null)
+    const [story, setStory] = useState<story | null>(null)
     const [canvasIsSaved, setCanvasIsSaved] = useState(false);
-
-    const story = {
-        title: "Madeline",
-        image: "https://images.unsplash.com/photo-1518796745738-41048802f99a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
-        prompts: ["lorem ipsum", "dolor set", "imperetus destinatus", "Et tu brutus"]
-    }
     // track current story progress
     const promptTracker = story && `
         ${currentPromptNumber} of ${story.prompts.length}
@@ -56,17 +50,17 @@ const StorybookApp: NextPage = () => {
 
 
 
-    // // setStory once selected
-    // useEffect(() => {
-    //     let userStory: story | undefined;
-    //     if (selectedStory !== null) {
-    //         userStory = stories.find(story => story.title === selectedStory);
-    //     }
-    //     if (userStory !== undefined) {
-    //         setStory(userStory)
-    //         setStorySelected(true);
-    //     }
-    // }, [selectedStory])
+    // setStory once selected
+    useEffect(() => {
+        let userStory: story | undefined;
+        if (selectedStory !== null) {
+            userStory = stories.find(story => story.title === selectedStory);
+        }
+        if (userStory !== undefined) {
+            setStory(userStory)
+            setStorySelected(true);
+        }
+    }, [selectedStory])
 
 
     // saveCanvas handler - will need to add in canvas saving capabilities;
