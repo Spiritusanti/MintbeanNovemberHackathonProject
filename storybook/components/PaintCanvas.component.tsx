@@ -125,7 +125,7 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
 
     return (
         <section>
-            <div  className={`${styles.canvasContainer}`}>
+            <div className={`${styles.canvasContainer}`}>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
                 ref={canvasRef}
@@ -138,7 +138,8 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
                 width={window.innerWidth}
                 height={window.innerHeight}
             />
-            <div>
+            </div>
+            <div className ={`${styles.buttonContainer}`}>
                 <button onClick={saveCanvasHandler}>Save</button>
             </div>
         </section>
