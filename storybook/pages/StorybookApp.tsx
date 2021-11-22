@@ -58,7 +58,7 @@ const StorybookApp: NextPage = () => {
             setStory(userStory)
             setStorySelected(true);
         }
-    }, [])
+    }, [selectedStory])
 
 
     // saveCanvas handler - will need to add in canvas saving capabilities;
@@ -99,8 +99,8 @@ const StorybookApp: NextPage = () => {
 
     return (
         <article>
-          <nav className="nav">
-            <Header title={story ? story.title : ""} />
+            <nav className="nav">
+                <Header title={story ? story.title : ""} />
             </nav>
             <section>
                 {content}
