@@ -20,11 +20,11 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-input{
+/* input{
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
-  }
+  }*/
 
 a {
   color: inherit;
@@ -122,10 +122,10 @@ button.secondary:hover {
 
 .clouds {
 	background-image: url("../public/bg-clouds.svg");
-	background-size: auto 100%;
+	background-size: cover auto;
 }
 
-
+/* comment here :3 */
 /*******************************
 
 
