@@ -108,7 +108,7 @@ const PaintCanvas: FC = () => {
     }
 
     return (
-        <section>
+        <section className="canvas-container flex-col-center">
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
                 ref={canvasRef}

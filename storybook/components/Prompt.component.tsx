@@ -6,12 +6,12 @@ interface PromptsProps {
 
 const Prompt: FC<PromptsProps> = ({ prompt, promptTracker }) => {
     return (
-        <section>
-            <div>
-                <p>{prompt}</p>
+        <section className="flex-col-center bg-light prompt">
+            <div className="flex-col-center">
+                <p className="center content">{prompt}</p>
             </div>
-            <div>
-                <p>{promptTracker}</p>
+            <div className="flex-col-center">
+                <p className="right content">{promptTracker}</p>
             </div>
         </section>
     )

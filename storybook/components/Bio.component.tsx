@@ -14,15 +14,15 @@ interface BioProps {
 const Bio: FC<BioProps> = ({ name, title, blurb, social }) => {
     return (
         <Card>
-            <Image src={placeholder} alt="bio-image"></Image>
-            <div>
+            <div className="card-head">
+                <Image src={placeholder} alt="bio-image"></Image>
                 <h1>{name}</h1>
-                <h3>{title}</h3>
             </div>
-            <div>
-                <p>{blurb}</p>
-            </div>
-            <div>
+            <div className="flex-col-center card-body">
+                <div className="bio-content">
+                    <h3><em>{title}</em></h3>
+                    <p>{blurb}</p>
+                </div>
                 <ul>
                     {social.map((soc) => <li key={v4()}>{soc}</li>)}
                 </ul>

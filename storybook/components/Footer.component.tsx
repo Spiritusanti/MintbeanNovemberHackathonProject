@@ -1,16 +1,19 @@
 import { FC } from "react";
 import Link from "next/dist/client/link";
 import Image from "next/dist/client/image";
-import githubLogo from '../public/GitHub-Mark-32px.png';
+import githubLogo from '../public/github-icon-white.svg';
 const Footer: FC = () => {
     return (
-        <div>
-            <p>copyright © 2021</p>
-            <Link href="https://github.com/Spiritusanti/MintbeanNovemberHackathonProject" passHref>
-                <Image src={githubLogo} alt="github"></Image>
-            </Link>
-            <p>Mintbean Hackathon November 2021</p>
-        </div>
+            <div className="flex-row-center footer-contents">
+                <p>copyright © 2021</p>
+                    <Link href="https://github.com/Spiritusanti/MintbeanNovemberHackathonProject" passHref>
+                        <div className="flex-row-center image-link">
+                            <Image src={githubLogo} alt="github"></Image>
+                            <p>See Project in GitHub</p>
+                        </div>
+                    </Link>
+                <p>Mintbean Hackathon November 2021</p>
+            </div>
     )
 }
 

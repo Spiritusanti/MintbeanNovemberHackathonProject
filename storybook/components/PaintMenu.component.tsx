@@ -36,20 +36,24 @@ const PaintMenu: FC<PaintMenuProps> = ({ setLineColor, setLineWidth, setLineOpac
 
 
     return (
-        <menu>
-            <div>
-                <button onClick={selectBrushHandler}>Brush</button>
-                <button onClick={selectEraserHandler}>Eraser</button>
-                <label htmlFor="brush-color" hidden>Brush Color</label>
-                <input type="color" onChange={brushColorHandler} />
+        <menu className="flex-col-center tool-container">
+            <div className="flex-row-center toolbox">
+                <div className="flex-row-center">
+                    <button onClick={selectBrushHandler}>Brush</button>
+                    <button onClick={selectEraserHandler}>Eraser</button>
+                    <label htmlFor="brush-color" hidden>Brush Color</label>
+                    <input type="color" onChange={brushColorHandler} />
+                </div>
+                <div className="flex-col-center">
+                    <label htmlFor="brush-color">Brush Width</label>
+                    <input type="range" min="3" max="20" onChange={brushWidthHandler} />
+                </div>
+                <div className="flex-col-center">
+                    <label htmlFor="brush-color">Brush Opacity</label>
+                    <input type="range" min="1" max="100" onChange={brushOpacityHandler} />
+                </div>
+                <button onClick={onClearCanvas}>Reset</button>
             </div>
-            <div>
-                <label htmlFor="brush-color">Brush Width</label>
-                <input type="range" min="3" max="20" onChange={brushWidthHandler} />
-                <label htmlFor="brush-color">Brush Opacity</label>
-                <input type="range" min="1" max="100" onChange={brushOpacityHandler} />
-            </div>
-            <button onClick={onClearCanvas}>Reset</button>
         </menu>
     )
 }
