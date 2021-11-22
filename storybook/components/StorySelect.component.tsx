@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { story } from '../pages/StorybookApp';
 import Card from './Card.component';
 import { v4 } from "uuid";
-import placeholder from "../public/Fates_of_Orbit_by_Bougal-992x956.jpg";
 
 interface StorySelectProps {
     stories: story[];
@@ -16,12 +15,14 @@ const StorySelect: FC<StorySelectProps> = ({ stories, setSelectedStory }) => {
     // set user selected story
     const userSelectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const title = event.target.value;
+        console.log(title);
         setUserSelection(title);
     }
 
 
     // form submit handler
-    const handleSubmit = () => {
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
         if (userSelection !== null) setSelectedStory(userSelection);
     }
 
@@ -30,16 +31,15 @@ const StorySelect: FC<StorySelectProps> = ({ stories, setSelectedStory }) => {
             <h1>Select your story</h1>
             {/* thinking grid or list of clickable story cards */}
             <form onSubmit={handleSubmit}>
-                <ul>
-                    {stories.map((story) => {
-                        console.log("mapped");
-                        <li>
-                            <label>{story.title}</label>
+                {stories.length > 0 ? stories.map((story) => {
+                    return (<Card key={v4()}>
+                        <button type="submit">
                             <input type="checkbox" value={story.title} onChange={userSelectHandler} />
-                        </li>
-                    })
-                    }
-                </ul>
+                            <Image src={story.image} alt={story.title} width={200} height={200} />
+                            <h1>{story.title}</h1>
+                        </button>
+                    </Card>)
+                }) : <p>No stories found!</p>}
             </form>
         </section>
     )

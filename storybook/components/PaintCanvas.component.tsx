@@ -118,6 +118,7 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
     const saveCanvasHandler = () => {
         const uri: string = canvasRef.current!.toDataURL();
         onSaveCanvas(uri);
+        ctxRef.current!.clearRect(0, 0, window.innerWidth, window.innerHeight);
     }
 
     return (

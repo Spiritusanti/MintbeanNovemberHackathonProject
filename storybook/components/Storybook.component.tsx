@@ -36,10 +36,11 @@ const Storybook: FC<StorybookProps> = ({ title, prompts, images }) => {
             <div>
                 <ul>
                     {illustratedStory.length > 0 ? illustratedStory.map((story) => {
-                        <li key={v4()}>
+                        console.log(story.image);
+                        return (<li key={v4()}>
                             <p>{story.prompt}</p>
-                            <Image src={story.image} alt={story.prompt}></Image>
-                        </li>
+                            <Image src={story.image} alt={story.prompt} width={500} height={500}></Image>
+                        </li>)
                     }) : <p>The story has yet to begin!</p>}
                 </ul>
             </div>
