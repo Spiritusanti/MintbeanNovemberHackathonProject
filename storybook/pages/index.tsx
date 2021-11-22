@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 							Dive into our collection of short stories and bring them to life
 							with your own illustrations!
 						</h3>
-						<Link href="/StorybookApp">
+						<Link href="/StorybookApp" passHref>
 							<button>TRY FOR FREE</button>
 						</Link>
 					</div>

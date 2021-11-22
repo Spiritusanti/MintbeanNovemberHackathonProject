@@ -13,7 +13,7 @@ body {
   height: 100%;
   background-color: var(--sky-color);
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   color: var(--dark);
   font-size: 18px;
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -43,7 +43,7 @@ a {
   align-items: center;
 }
 
-.flex-col-center {
+.flexColCenter {
   display: flex;
   flex-direction: column;
   align-items: center;
