@@ -2,7 +2,7 @@
 
 
 
-/*
+/*******************
 
 
 --------------------
@@ -10,7 +10,7 @@ LANDING PAGE STYLING
 --------------------
 
 
-*/
+*******************/
 
 
 html,
@@ -19,6 +19,7 @@ body {
   --hover-color:#4C7B8C;
   --sky-color: #E5FDFF;
   --light: white;
+  --dark: #212121
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,7 +27,7 @@ body {
   background-color: var(--sky-color);
   padding: 0;
   margin: 0;
-  color: #212121;
+  color: var(--dark);
   font-size: 18px;
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -120,7 +121,7 @@ button.secondary:hover {
   color: var(--light)
 }
 
-/* 
+/*
 
 ------------------------
 Section Specific Styling
@@ -242,10 +243,6 @@ STORYBOOK APP STYLING
 
 .prompt > div {
   width: 100%;
-}
-
-.prompt-content {
-  text-align: center;
 }
 
 
