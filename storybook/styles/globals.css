@@ -6,7 +6,7 @@ body {
   --hover-color:#4C7B8C;
   --sky-color: #E5FDFF;
   --light: white;
-  --dark: #212121
+  --dark: #212121;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -20,11 +20,11 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-input{
+/* input{
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
-  }
+  }*/
 
 a {
   color: inherit;
@@ -43,7 +43,7 @@ a {
   align-items: center;
 }
 
-.flexColCenter {
+.flex-col-center {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,7 +122,8 @@ button.secondary:hover {
 
 .clouds {
 	background-image: url("../public/bg-clouds.svg");
-	background-size: auto 100%;
+	background-size: cover auto;
+  background-position-y: center;
 }
 
 

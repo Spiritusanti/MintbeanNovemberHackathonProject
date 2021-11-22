@@ -1,6 +1,5 @@
 .section {
   flex: 1;
-  margin: 0 auto;
   height: 100vh;
   max-height: 800px;
   align-self: stretch;
