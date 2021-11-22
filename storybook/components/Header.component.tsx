@@ -19,7 +19,7 @@ const Header: FC<HeaderProps> = ({ title }) => {
                 <Link href="/#about-us">About Us</Link>
             </div>
             <div className="menu-item">
-                <button className="secondary"><Link href="/StorybookApp"><strong>TRY FOR FREE</strong></Link></button>
+                <Link href="/StorybookApp"><button className="secondary">TRY FOR FREE</button></Link>
             </div>
        </div>
     }

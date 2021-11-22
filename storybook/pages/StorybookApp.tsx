@@ -32,7 +32,7 @@ const StorybookApp: NextPage = () => {
     return (
         <article>
             <Header title={story.title} />
-            <section>
+            <section className="bg-light">
                 <Prompt prompt={story.prompts[currentPromptNumber]} promptTracker={promptTracker} />
                 {!showPaintCanvas && <p>Loading...</p>}
                 {showPaintCanvas && <PaintCanvas />}

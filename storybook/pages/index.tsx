@@ -33,19 +33,19 @@ const Home: NextPage = () => {
       <nav className="flex-col-center nav">
         <Header title={null} />
       </nav>
-      <section className="flex-col-center bg-light">
+      <section className="full flex-col-center bg-light">
         <div className="flex-row-center content">
           <div className="hero-content">
             <h1>Storybook lets you set your imagination free</h1>
             <h3>Dive into our collection of short stories and bring them to life with your own illustrations!</h3>
-            <button><Link href="/StorybookApp"><strong>TRY FOR FREE</strong></Link></button>
+            <Link href="/StorybookApp"><button>TRY FOR FREE</button></Link>
           </div>
           <div className="hero-content">
             <Image src={placeholder} alt="hero image"></Image> 
           </div>
         </div>
       </section>
-      <section className="flex-col-center tutorial">
+      <section className="full flex-col-center tutorial" id="tutorial">
         <div className="flex-row-center content">
           <div className="flex-col">
             <h1>How it Works</h1>
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <section className="flex-col-center bg-light">
+      <section id="about-us" className="full flex-col-center bg-light">
         <div className="flex-col-center content">
           <h1>Meet the Team</h1>
           <div className="flex-row-center card-container">
