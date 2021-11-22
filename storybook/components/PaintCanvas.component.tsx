@@ -117,8 +117,10 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
 
     // saveCanvas handler
     const saveCanvasHandler = () => {
-        const uri: string = canvasRef.current!.toDataURL();
+        const uri: string = canvasRef.current!.toDataURL("image/png");
         onSaveCanvas(uri);
+        ctxRef.current!.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        onNextScene();
     }
 
     return (
@@ -136,10 +138,8 @@ const PaintCanvas: FC<CanvasProps> = ({ canvasIsSaved, onSaveCanvas, onNextScene
                 width={window.innerWidth}
                 height={window.innerHeight}
             />
-            </div>
-            <div className={`${styles.buttonContainer} flex-col-center`}>
-                {!canvasIsSaved && <button onClick={saveCanvasHandler}>Save</button>}
-                {canvasIsSaved && <button onClick={onNextScene}>Next Scene</button>}
+            <div>
+                <button onClick={saveCanvasHandler}>Save</button>
             </div>
         </section>
     )
