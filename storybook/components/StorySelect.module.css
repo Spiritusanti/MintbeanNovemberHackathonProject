@@ -11,8 +11,6 @@
 }
 
 .cardContainer {
-    flex-wrap: wrap;
-    flex: 100%;
     margin: 1.1rem;
 }
 

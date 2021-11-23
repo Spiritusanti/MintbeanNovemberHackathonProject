@@ -5,9 +5,11 @@ import styles from "./Header.module.css"
 
 interface HeaderProps {
     title: string | null;
+    storySelectHandler: () => void | null;
+    storySelected: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ title }) => {
+const Header: FC<HeaderProps> = ({ title, storySelectHandler, storySelected }) => {
     const router = useRouter()
 
     let headerContent;
@@ -28,7 +30,7 @@ const Header: FC<HeaderProps> = ({ title }) => {
     }
 
     if (router.pathname === "/StorybookApp") {
-        headerContent = <div><p>{title}</p></div>
+        headerContent = <div><p>{storySelected && <button onClick={storySelectHandler}>{`<`}</button>} {title}</p></div>
     }
     return (
         <header className={`${styles.header} flex-row-center`}>
