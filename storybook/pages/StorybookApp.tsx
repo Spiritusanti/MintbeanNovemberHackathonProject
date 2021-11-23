@@ -22,7 +22,7 @@ const stories = [
         title: "The Tortoise and the Hare",
         image: "https://images.unsplash.com/photo-1531303420757-bc604c58b7af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         prompts: ["There once was a speedy hare who bragged about how fast he could run. Tired of hearing him boast, Slow and Steady, the tortoise, challenged him to a race.",
-        "Hare ran down the road for a while and then paused to rest. He looked back at Slow and Steady and cried out, \"How do you expect to win this race when you are walking along at your slow, slow pace?\"", " Hare stretched himself out alongside the road and fell asleep, thinking, \"There is plenty of time to relax.\" Slow and Steady walked and walked. He never, ever stopped until he came to the finish line.", " The animals who were watching cheered so loudly for Tortoise, they woke up Hare. Hare stretched and yawned and began to run again, but it was too late. Tortoise was over the line. After that, Hare always reminded himself, \"Don't brag about your lightning pace, for Slow and Steady won the race!\""]
+            "Hare ran down the road for a while and then paused to rest. He looked back at Slow and Steady and cried out, \"How do you expect to win this race when you are walking along at your slow, slow pace?\"", " Hare stretched himself out alongside the road and fell asleep, thinking, \"There is plenty of time to relax.\" Slow and Steady walked and walked. He never, ever stopped until he came to the finish line.", " The animals who were watching cheered so loudly for Tortoise, they woke up Hare. Hare stretched and yawned and began to run again, but it was too late. Tortoise was over the line. After that, Hare always reminded himself, \"Don't brag about your lightning pace, for Slow and Steady won the race!\""]
     },
     {
         title: "Hariet the Spy",
@@ -87,6 +87,12 @@ const StorybookApp: NextPage = () => {
         setStory(null);
     }
 
+    // return to story selection
+    const returnToStorySelection = () => {
+        setStorySelected(false);
+        setStory(null);
+    }
+
 
     // conditional rendering based on user interaction
     let content;
@@ -113,7 +119,7 @@ const StorybookApp: NextPage = () => {
     return (
         <article>
             <nav className="nav">
-                <Header title={story ? story.title : ""} />
+                <Header storySelected={storySelected} title={story ? story.title : ""} storySelectHandler={returnToStorySelection} />
             </nav>
             <section>
                 {content}
