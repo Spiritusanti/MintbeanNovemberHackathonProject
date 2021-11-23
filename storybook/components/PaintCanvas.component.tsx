@@ -140,15 +140,10 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
                 width={window.innerWidth}
                 height={window.innerHeight}
             />
-<<<<<<< HEAD
             </div>
             <div className ={`${styles.buttonContainer}`}>
-                <button onClick={saveCanvasHandler}>Save</button>
-=======
-            <div>
                 {!storyComplete && <button onClick={saveCanvasHandler}>Save</button>}
                 {storyComplete && <button onClick={saveCanvasHandler}>See the result!</button>}
->>>>>>> main
             </div>
         </section>
     )
