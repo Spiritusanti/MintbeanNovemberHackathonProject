@@ -14,14 +14,14 @@ const bioPlaceholder = [
 		title: "Web Developer",
 		blurb: "lorem ipsum dolor set",
 		image: placeholder,
-		social: ["twitter", "github", "linkedIn", "portfolio"],
+		social: ["https://twitter.com/balorformorian", "https://github.com/Spiritusanti", "https://www.linkedin.com/in/jacob-mccracken/", "https://spiritusanti.github.io/JacobMcCracken/"],
 	},
 	{
 		name: "Chris Toribio",
 		title: "UX Designer",
 		blurb: "lorem ipsum dolor set",
 		image: placeholder,
-		social: ["twitter", "github", "portfolio"],
+		social: ["https://www.linkedin.com/in/cromtoribio", "https://www.twitter.com/christorib_io", "https://www.christoribio.com/"],
 	},
 ];
 
