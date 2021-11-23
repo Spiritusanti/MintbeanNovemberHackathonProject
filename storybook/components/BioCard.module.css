@@ -1,27 +1,40 @@
 /* Bio Card Styling */
 
 .cardContainer {
-	color: var(--light);
-	background-color: var(--primary-color);
-	align-self: stretch;
-	border-radius: 0.444rem;
-	box-shadow: 0px 4px 8px 0px #2e4d5840;
-	margin: 1.11rem;
+  color: var(--light);
+  background-color: var(--primary-color);
+  align-self: stretch;
+  border-radius: 0.444rem;
+  box-shadow: 0px 4px 8px 0px #2e4d5840;
+  margin: 1.11rem;
+  width: 45rem;
 }
 
 .image {
-	border-radius: 0.44rem 0.44rem 0 0;
+  border-radius: 0.44rem 0.44rem 0 0;
 }
 
 .cardBody {
-	height: 100%;
-	padding: 1.11rem;
-	align-self: stretch;
-	justify-content: space-between;
+  height: 100%;
+  padding: 1.11rem;
+  align-self: stretch;
+  justify-content: space-between;
+}
+
+.social {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social li {
+  cursor: pointer;
 }
 
 .cardHead h1,
 .cardBody h3 {
-	font-size: 1rem;
-	margin: 0.556rem;
+  font-size: 1rem;
+  margin: 0.556rem;
 }

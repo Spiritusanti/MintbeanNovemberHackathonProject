@@ -8,20 +8,29 @@ import placeholder from "../public/Fates_of_Orbit_by_Bougal-992x956.jpg";
 import styles from "../styles/Home.module.css";
 import { v4 } from "uuid";
 
+// social logo imports
+import twitterLogo from '../public/twiiter.svg';
+import linkedInLogo from '../public/linkedin.svg';
+import githubLogo from '../public/github-icon-white.svg';
+import portfolioIcon from "../public/portfolio.svg";
+// portfolio photo
+import Chris from "../public/chris-profile.jpg";
+import Jacob from "../public/Jacob.jpg";
+
 const bioPlaceholder = [
 	{
 		name: "Jacob McCracken",
 		title: "Web Developer",
 		blurb: "lorem ipsum dolor set",
-		image: placeholder,
-		social: ["https://twitter.com/balorformorian", "https://github.com/Spiritusanti", "https://www.linkedin.com/in/jacob-mccracken/", "https://spiritusanti.github.io/JacobMcCracken/"],
+		image: Jacob,
+		social: [{ url: "https://twitter.com/balorformorian", logo: twitterLogo }, { url: "https://github.com/Spiritusanti", logo: githubLogo }, { url: "https://www.linkedin.com/in/jacob-mccracken/", logo: linkedInLogo }, { url: "https://spiritusanti.github.io/JacobMcCracken/", logo: portfolioIcon }],
 	},
 	{
 		name: "Chris Toribio",
 		title: "UX Designer",
 		blurb: "lorem ipsum dolor set",
-		image: placeholder,
-		social: ["https://www.linkedin.com/in/cromtoribio", "https://www.twitter.com/christorib_io", "https://www.christoribio.com/"],
+		image: Chris,
+		social: [{ url: "https://www.linkedin.com/in/cromtoribio", logo: linkedInLogo }, { url: "https://www.twitter.com/christorib_io", logo: twitterLogo }, { url: "https://www.christoribio.com/", logo: portfolioIcon }],
 	},
 ];
 
