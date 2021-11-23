@@ -162,8 +162,8 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
 					onTouchStart={startTouchDrawing}
 					onTouchEnd={endTouchDrawing}
 					onTouchMove={drawWithTouch}
-					width={window.innerWidth}
-					height={window.innerHeight}
+					width={window.innerWidth - 50}
+					height={window.innerHeight - 50}
 				/>
 			</div>
 		</section>
