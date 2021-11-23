@@ -94,7 +94,6 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
         ctxRef.current!.stroke();
     }
 
-
     // set Eraser active
     useEffect(() => {
         if (toolType === 'brush') {
@@ -128,6 +127,7 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
         <section>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
+
                 ref={canvasRef}
                 onMouseDown={startMouseDrawing}
                 onMouseUp={endMouseDrawing}

@@ -9,14 +9,15 @@ interface BioProps {
     name: string;
     title: string;
     blurb: string;
-    social: string[]
+    social: string[];
+    image: StaticImageData;
 }
 
-const Bio: FC<BioProps> = ({ name, title, blurb, social }) => {
+const Bio: FC<BioProps> = ({ name, title, blurb, social, image }) => {
     return (
         <Card>
             <div className={`${styles.cardHead}`}>
-                <Image src={placeholder} alt="bio-image" className={`${styles.image}`}></Image>
+                <Image src={image} alt="bio-image" className={`${styles.image}`}></Image>
                 <h1>{name}</h1>
             </div>
             <div className={`${styles.cardBody} flex-col-center`}>

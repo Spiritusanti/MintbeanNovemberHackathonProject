@@ -13,12 +13,14 @@ const bioPlaceholder = [
 		name: "Jacob McCracken",
 		title: "Web Developer",
 		blurb: "lorem ipsum dolor set",
+		image: placeholder,
 		social: ["twitter", "github", "linkedIn", "portfolio"],
 	},
 	{
 		name: "Chris Toribio",
 		title: "UX Designer",
 		blurb: "lorem ipsum dolor set",
+		image: placeholder,
 		social: ["twitter", "github", "portfolio"],
 	},
 ];
@@ -92,6 +94,7 @@ const Home: NextPage = () => {
 								title={bio.title}
 								blurb={bio.blurb}
 								social={bio.social}
+								image={bio.image}
 							/>
 						))}
 					</div>
