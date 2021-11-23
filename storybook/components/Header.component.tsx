@@ -5,7 +5,7 @@ import styles from "./Header.module.css"
 
 interface HeaderProps {
     title: string | null;
-    storySelectHandler: () => void | null;
+    storySelectHandler: (() => void) | null;
     storySelected: boolean;
 }
 
@@ -30,7 +30,7 @@ const Header: FC<HeaderProps> = ({ title, storySelectHandler, storySelected }) =
     }
 
     if (router.pathname === "/StorybookApp") {
-        headerContent = <div><p>{storySelected && <button onClick={storySelectHandler}>{`<`}</button>} {title}</p></div>
+        headerContent = <div><p>{storySelected && storySelectHandler && <button onClick={storySelectHandler}>{`<`}</button>} {title}</p></div>
     }
     return (
         <header className={`${styles.header} flex-row-center`}>

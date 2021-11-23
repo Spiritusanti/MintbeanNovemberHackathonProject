@@ -38,7 +38,7 @@ const Home: NextPage = () => {
 	return (
 		<article className="flex-col-center">
 			<nav className="nav">
-				<Header title={null} />
+				<Header title={null} storySelectHandler={null} storySelected={false} />
 			</nav>
 			<section className={`${styles.section} flex-col-center bg-light`}>
 				<div className="flex-row-center content">
