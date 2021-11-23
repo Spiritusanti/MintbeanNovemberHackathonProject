@@ -12,13 +12,15 @@ const bioPlaceholder = [
 	{
 		name: "Jacob McCracken",
 		title: "Web Developer",
-		blurb: "Chris is a UX Designer from San Diego, CA. His dream is to use the powers of UX to make the world a little more human, one beautiful design at a time.",
+		blurb: "lorem ipsum dolor set",
+		image: placeholder,
 		social: ["twitter", "github", "linkedIn", "portfolio"],
 	},
 	{
 		name: "Chris Toribio",
 		title: "UX Designer",
-		blurb: "Chris is a UX Designer from San Diego, CA. His dream is to use the powers of UX to make the world a little more human, one beautiful design at a time.",
+		blurb: "lorem ipsum dolor set",
+		image: placeholder,
 		social: ["twitter", "github", "portfolio"],
 	},
 ];
@@ -98,6 +100,7 @@ const Home: NextPage = () => {
 								title={bio.title}
 								blurb={bio.blurb}
 								social={bio.social}
+								image={bio.image}
 							/>
 						))}
 					</div>
