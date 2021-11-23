@@ -1,7 +1,4 @@
 /* Bio Card Styling */
-.flexSettings {
-  flex: 0 1 50%;
-}
 
 .cardContainer {
   color: var(--light);
@@ -12,7 +9,8 @@
   margin: 1.11rem;
 }
 
-.bioCard {
+.bioCard,
+.cardBody {
   max-width: 40rem;
 }
 
