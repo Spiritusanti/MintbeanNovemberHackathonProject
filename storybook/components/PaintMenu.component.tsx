@@ -137,16 +137,16 @@ const PaintMenu: FC<PaintMenuProps> = ({
 						<path
 							d="M13.636 26.364C14.4708 27.201 15.4628 27.8647 16.5549 28.3171C17.6471 28.7695 18.8179 29.0016 20 29C24.9705 29 29 24.9705 29 20C29 15.0295 24.9705 11 20 11C17.515 11 15.265 12.0075 13.636 13.636C12.807 14.465 11 16.5 11 16.5"
 							stroke="white"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						/>
 						<path
 							d="M11 12.5V16.5H15"
 							stroke="white"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						/>
 					</svg>
 				</button>
