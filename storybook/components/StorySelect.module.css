@@ -1,4 +1,5 @@
 .clickWrapper h1 {
+    width: 15rem;
     font-size: 1.1em;
 }
 
@@ -11,13 +12,14 @@
 }
 
 .cardContainer {
+    width: 100%;
+    justify-content: center;
     flex-wrap: wrap;
     flex: 100%;
     margin: 1.1rem;
 }
 
 .clickWrapper  {
-    width: 15rem;
     border-radius: 0.444rem;
 }
 

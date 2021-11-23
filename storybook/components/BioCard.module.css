@@ -1,7 +1,9 @@
 /* Bio Card Styling */
+.flexSettings {
+  flex: 0 1 50%;
+}
 
 .cardContainer {
-  flex: 0 1 50%;
   color: var(--light);
   background-color: var(--primary-color);
   align-self: stretch;
@@ -24,8 +26,7 @@
 }
 
 .cardBody {
-  display: flex;
-  flex: 0 1 50%;
+  height: 100%;
   padding: 0 1.11rem 1.11rem 1.11rem;
   justify-content: space-between;
 }
