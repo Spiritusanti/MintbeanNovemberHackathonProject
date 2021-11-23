@@ -1,8 +1,6 @@
 import { FC } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Card from "./Card.component";
-import placeholder from "../public/Fates_of_Orbit_by_Bougal-992x956.jpg";
 import styles from "./BioCard.module.css";
 import { v4 } from "uuid";
 
@@ -36,9 +34,9 @@ const Bio: FC<BioProps> = ({ name, title, blurb, social, image }) => {
                 <ul className={styles.social}>
                     {social.map((soc) => {
                         return (<li key={v4()}>
-                            <Link href={soc.url} passHref>
+                            <a href={soc.url} target="_blank" rel="noreferrer">
                                 <Image src={soc.logo} alt={soc.url} height={50} width={50}></Image>
-                            </Link>
+                            </a>
                         </li>)
                     })}
                 </ul>
