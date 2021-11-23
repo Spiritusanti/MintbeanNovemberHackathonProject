@@ -37,6 +37,7 @@
 .colorPicker {
 	background-color: white;
 	padding: 0;
+	margin: 10px;
 	border: none;
 	height: 4.44rem;
 	width: 4.44rem;

@@ -21,16 +21,18 @@ const StorySelect: FC<StorySelectProps> = ({ stories, setSelectedStory }) => {
     return (
         <section className={`${styles.storySection} flex-col-center`}>
             <h1 className="center">Choose an Adventure</h1>
+            <div className={`${styles.cardContainer} flex-row-center`}>
             {/* thinking grid or list of clickable story cards */}
             {stories.length > 0 ? stories.map((story) => {
                 return (<Card key={v4()}>
                     {/* need to add hover interaction to show user tile is clickable */}
-                    <div id="story-click-wrapper" onClick={() => userSelectHandler(story.title)}>
+                    <div id="story-click-wrapper" onClick={() => userSelectHandler(story.title)} className={`${styles.clickWrapper}`}>                
+                        <Image src={story.image} alt={story.title} width={100} height={100} layout="responsive" className={`${styles.image}`}></Image>
                         <h1>{story.title}</h1>
-                        <Image src={story.image} alt={story.title} width={100} height={100} layout="responsive"></Image>
                     </div>
                 </Card>)
             }) : <p>No stories found!</p>}
+            </div>
         </section>
     )
 }

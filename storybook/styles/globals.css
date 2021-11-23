@@ -117,11 +117,10 @@ button.secondary:hover {
 .content {
 	height: 100%;
 	width: 100%;
-	max-width: 1100px;
+	max-width: 80vw;
 }
 
 .clouds {
 	background-image: url("../public/bg-clouds.svg");
-	background-size: cover auto;
-	background-position-y: center;
+	background-size: cover;
 }
