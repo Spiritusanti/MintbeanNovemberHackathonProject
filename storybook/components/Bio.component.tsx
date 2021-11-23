@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Card from "./Card.component";
 import placeholder from '../public/Fates_of_Orbit_by_Bougal-992x956.jpg';
@@ -13,6 +14,8 @@ interface BioProps {
     image: StaticImageData;
 }
 
+
+
 const Bio: FC<BioProps> = ({ name, title, blurb, social, image }) => {
     return (
         <Card>
@@ -26,7 +29,13 @@ const Bio: FC<BioProps> = ({ name, title, blurb, social, image }) => {
                     <p>{blurb}</p>
                 </div>
                 <ul>
-                    {social.map((soc) => <li key={v4()}>{soc}</li>)}
+                    {social.map((soc) => {
+                        return (<li key={v4()}>
+                            <Link href={soc} passHref>
+                                <Image src={placeholder} alt={soc} height={50} width={50}></Image>
+                            </Link>
+                        </li>)
+                    })}
                 </ul>
             </div>
         </Card>

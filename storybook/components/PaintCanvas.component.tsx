@@ -14,12 +14,22 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [lineWidth, setLineWidth] = useState<number>(50);
+    const [lineWidth, setLineWidth] = useState<number>(10);
     const [lineColor, setLineColor] = useState<string>("black");
     const [toolType, setToolType] = useState<string>("brush");
-    const [lineOpacity, setLineOpacity] = useState<number>(0.1);
+    const [lineOpacity, setLineOpacity] = useState<number>(1);
     const storyComplete = promptsLength === currentPromptNumber;
+
+
     // initializing when the component mounts for the first time
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas!.getContext("2d");
+        ctx!.fillStyle = "white";
+        ctx!.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height)
+    }, []);
+
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) {
@@ -33,6 +43,7 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
         ctx!.lineWidth = lineWidth;
         ctxRef.current = ctx!;
     }, [lineWidth, lineColor, lineOpacity]);
+
 
     /*Section for MouseEvents */
     // function for starting the drawing
@@ -96,29 +107,31 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
 
     // set Eraser active
     useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas!.getContext('2d');
         if (toolType === 'brush') {
-            setLineColor("black")
-            setLineOpacity(1)
-            setLineWidth(5)
+            ctx!.strokeStyle = lineColor;
         }
         if (toolType === "eraser") {
-            setLineColor("white");
-            setLineOpacity(1);
-            setLineWidth(50);
+            ctx!.strokeStyle = "white";
         }
-    }, [toolType]);
+    }, [toolType, lineColor, lineOpacity, lineWidth]);
 
 
     // reset handler
     const onClearCanvas = () => {
         ctxRef.current!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+        console.log("canvas cleared")
     }
 
     // saveCanvas handler
     const saveCanvasHandler = () => {
         const uri: string = canvasRef.current!.toDataURL("image/png");
         onSaveCanvas(uri);
-        ctxRef.current!.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        ctxRef.current!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+        ctxRef.current!.fillStyle = "white";
+        ctxRef.current!.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+        setToolType('brush');
         onNextScene();
     }
 
@@ -127,7 +140,6 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
         <section>
             <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
             <canvas
-
                 ref={canvasRef}
                 onMouseDown={startMouseDrawing}
                 onMouseUp={endMouseDrawing}
