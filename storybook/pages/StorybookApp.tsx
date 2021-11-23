@@ -119,7 +119,7 @@ const StorybookApp: NextPage = () => {
     return (
         <article>
             <nav className="nav">
-                <Header title={story ? story.title : ""} storySelectHandler={returnToStorySelection} />
+                <Header storySelected={storySelected} title={story ? story.title : ""} storySelectHandler={returnToStorySelection} />
             </nav>
             <section>
                 {content}
