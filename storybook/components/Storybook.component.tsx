@@ -43,7 +43,7 @@ const Storybook: FC<StorybookProps> = ({ title, prompts, images, startNewStory }
                         return (<li key={v4()} className={`${styles.prompt} flex-col-center`}>
                             <p className={`${styles.promptContent}`}>{story.prompt}</p>
                             {/* doesn't work with nextJs Image component - unable to parse src or src is undefined or no src passed to Image errors. Not an ideal solution but out of time to find a better one currently */}
-                            <img src={currentImage} alt={title} />
+                            <img src={currentImage} alt={title} className={styles.userImages} />
                         </li>)
                     }) : <p>The story has yet to begin!</p>}
                 </ul>
