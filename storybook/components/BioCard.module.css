@@ -1,6 +1,6 @@
 /* Bio Card Styling */
 
-.card {
+.cardContainer {
 	color: var(--light);
 	background-color: var(--primary-color);
 	align-self: stretch;
@@ -15,12 +15,13 @@
 
 .cardBody {
 	height: 100%;
+	padding: 20px;
 	align-self: stretch;
 	justify-content: space-between;
 }
 
-.cardHead h1, .cardBody h3 {
-    font-size: 1rem;
-    margin: 10px 0px;
-  }
-  
+.cardHead h1,
+.cardBody h3 {
+	font-size: 1rem;
+	margin: 10px 0px;
+}

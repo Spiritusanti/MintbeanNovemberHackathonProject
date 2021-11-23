@@ -2,6 +2,7 @@ import React, { FC, SetStateAction, useState } from "react";
 import Image from 'next/image';
 import { story } from '../pages/StorybookApp';
 import Card from './Card.component';
+import styles from './StorySelect.module.css';
 import { v4 } from "uuid";
 
 interface StorySelectProps {
@@ -26,13 +27,13 @@ const StorySelect: FC<StorySelectProps> = ({ stories, setSelectedStory }) => {
     }
 
     return (
-        <section>
-            <h1>Select your story</h1>
+        <section className={`${styles.storySection} flex-col-center`}>
+            <h1 className="center">Choose an Adventure</h1>
             {/* thinking grid or list of clickable story cards */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={`flex-row-center`}>
                 {stories.length > 0 ? stories.map((story) => {
                     return (<Card key={v4()}>
-                        <button type="submit">
+                        <button type="submit" className={`${styles.storySelector}`}>
                             <input type="checkbox" value={story.title} onChange={userSelectHandler} />
                             <Image src={story.image} alt={story.title} width={200} height={200} />
                             <h1>{story.title}</h1>

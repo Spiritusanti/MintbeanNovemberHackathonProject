@@ -141,7 +141,7 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
                 height={window.innerHeight}
             />
             </div>
-            <div className ={`${styles.buttonContainer}`}>
+            <div className ={`${styles.buttonContainer} flex-col-center`}>
                 {!storyComplete && <button onClick={saveCanvasHandler}>Save</button>}
                 {storyComplete && <button onClick={saveCanvasHandler}>See the result!</button>}
             </div>

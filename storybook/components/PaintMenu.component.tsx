@@ -21,7 +21,6 @@ const PaintMenu: FC<PaintMenuProps> = ({
 	const brushColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const color = event.target.value;
 		setLineColor(color);
-		console.log("run");
 	};
 
 	const brushWidthHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,11 +87,12 @@ const PaintMenu: FC<PaintMenuProps> = ({
 							/>
 						</svg>
 					</button>
-					<div>
+					<div className={`${styles.round}`}>
 						<input
 							type="color"
 							onChange={brushColorHandler}
 							className={`${styles.colorPicker}`}
+							title="Choose Brush Color"
 						/>
 						<label
 							htmlFor="brush-color"
@@ -100,6 +100,7 @@ const PaintMenu: FC<PaintMenuProps> = ({
 						></label>
 					</div>
 				</div>
+
 				<button
 					onClick={showSlidersHandler}
 					className={styles.round}
@@ -161,6 +162,7 @@ const PaintMenu: FC<PaintMenuProps> = ({
 								min="3"
 								max="20"
 								onChange={brushWidthHandler}
+								className={`${styles.brushSlider}`}
 							/>
 						</div>
 						<div className="flex-col-center">
@@ -170,6 +172,7 @@ const PaintMenu: FC<PaintMenuProps> = ({
 								min="1"
 								max="100"
 								onChange={brushOpacityHandler}
+								className={`${styles.brushSlider}`}
 							/>
 						</div>
 					</Fragment>
