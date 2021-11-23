@@ -10,36 +10,26 @@ interface StorySelectProps {
 }
 
 const StorySelect: FC<StorySelectProps> = ({ stories, setSelectedStory }) => {
-    const [userSelection, setUserSelection] = useState<string | null>(null);
-
-    // set user selected story
-    const userSelectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const title = event.target.value;
-        setUserSelection(title);
-    }
 
 
-    // form submit handler
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        if (userSelection !== null) setSelectedStory(userSelection);
+    // story select handler
+    const userSelectHandler = (title: string) => {
+        setSelectedStory(title);
     }
 
     return (
         <section>
             <h1>Select your story</h1>
             {/* thinking grid or list of clickable story cards */}
-            <form onSubmit={handleSubmit}>
-                {stories.length > 0 ? stories.map((story) => {
-                    return (<Card key={v4()}>
-                        <button type="submit">
-                            <input type="checkbox" value={story.title} onChange={userSelectHandler} />
-                            <Image src={story.image} alt={story.title} width={200} height={200} />
-                            <h1>{story.title}</h1>
-                        </button>
-                    </Card>)
-                }) : <p>No stories found!</p>}
-            </form>
+            {stories.length > 0 ? stories.map((story) => {
+                return (<Card key={v4()}>
+                    {/* need to add hover interaction to show user tile is clickable */}
+                    <div id="story-click-wrapper" onClick={() => userSelectHandler(story.title)}>
+                        <h1>{story.title}</h1>
+                        <Image src={story.image} alt={story.title} width={100} height={100} layout="responsive"></Image>
+                    </div>
+                </Card>)
+            }) : <p>No stories found!</p>}
         </section>
     )
 }
