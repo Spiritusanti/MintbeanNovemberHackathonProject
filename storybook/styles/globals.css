@@ -124,3 +124,22 @@ button.secondary:hover {
 	background-image: url("../public/bg-clouds.svg");
 	background-size: cover;
 }
+
+
+@media screen and (max-width: 600px) {
+	.content {
+		flex-direction: column-reverse;
+	}
+
+	.content:last-of-type {
+		flex-direction: column;
+	}
+
+	.content:last-of-type h1 {
+		font-size: 1.5rem;
+	}
+
+	.bio-mobile-display {
+		flex-direction: column;
+	}
+}

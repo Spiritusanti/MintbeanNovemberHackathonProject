@@ -61,7 +61,7 @@ const Home: NextPage = () => {
 				id="tutorial"
 				className={`${styles.section} flex-col-center clouds`}
 			>
-				<div className="flex-row-center content">
+				<div className="flex-row-center content mobileContent">
 					<div className="flex-col">
 						<h1>How it Works</h1>
 						<div>
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
 			>
 				<div className="flex-col-center content">
 					<h1>Meet the Team</h1>
-					<div className={`${styles.cardContainer} flex-row-center`}>
+					<div className={`${styles.cardContainer} flex-row-center bio-mobile-display`}>
 						{bioPlaceholder.map((bio) => (
 							<Bio
 								key={v4()}

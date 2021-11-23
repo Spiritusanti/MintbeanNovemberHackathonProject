@@ -10,6 +10,7 @@
 
 .storyContainer ul {
     list-style: none;
+	padding: 1rem;
 }
 
 .storyContainer li {
@@ -18,7 +19,7 @@
 }
 
 .storyContainer img {
-    width: 100vw;
+    width: 95%;
     background-color: white;
 }
 
@@ -34,4 +35,10 @@
 	background-color: var(--light);
 	border-radius: 5px;
 	box-shadow: 0px 4px 8px 0px #2e4d5840;
+}
+
+
+.userImages {
+	width: 85%;
+	padding: 1rem;
 }
