@@ -28,7 +28,7 @@ const bioPlaceholder = [
 	{
 		name: "Chris Toribio",
 		title: "UX Designer",
-		blurb: "lorem ipsum dolor set",
+		blurb: "Chris is a San Diego based UX Designer. His passions are rock climbing, calligraphy, and plant care. Through UX, he dreams of making the world a little more beautiful and a little more human.",
 		image: Chris,
 		social: [{ url: "https://www.linkedin.com/in/cromtoribio", logo: linkedInLogo }, { url: "https://www.twitter.com/christorib_io", logo: twitterLogo }, { url: "https://www.christoribio.com/", logo: portfolioIcon }],
 	},
