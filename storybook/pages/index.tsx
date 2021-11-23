@@ -9,7 +9,7 @@ import styles from "../styles/Home.module.css";
 import { v4 } from "uuid";
 
 // social logo imports
-import twitterLogo from '../public/twiiter.svg';
+import twitterLogo from '../public/twitter.svg';
 import linkedInLogo from '../public/linkedin.svg';
 import githubLogo from '../public/github-icon-white.svg';
 import portfolioIcon from "../public/portfolio.svg";
@@ -23,7 +23,7 @@ const bioPlaceholder = [
 		title: "Web Developer",
 		blurb: "lorem ipsum dolor set",
 		image: Jacob,
-		social: [{ url: "https://twitter.com/balorformorian", logo: twitterLogo }, { url: "https://github.com/Spiritusanti", logo: githubLogo }, { url: "https://www.linkedin.com/in/jacob-mccracken/", logo: linkedInLogo }, { url: "https://spiritusanti.github.io/JacobMcCracken/", logo: portfolioIcon }],
+		social: [{ url: "https://www.linkedin.com/in/jacob-mccracken/", logo: linkedInLogo }, { url: "https://twitter.com/balorformorian", logo: twitterLogo }, { url: "https://github.com/Spiritusanti", logo: githubLogo }, { url: "https://spiritusanti.github.io/JacobMcCracken/", logo: portfolioIcon }],
 	},
 	{
 		name: "Chris Toribio",
