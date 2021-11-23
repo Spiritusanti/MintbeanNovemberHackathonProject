@@ -10,14 +10,11 @@
   border-radius: 0.444rem;
   box-shadow: 0px 4px 8px 0px #2e4d5840;
   margin: 1.11rem;
-}
-
-.bioCard {
-  max-width: 40rem;
+  width: 95%;
 }
 
 .image {
-  object-fit:contain;
+  object-fit: contain;
   border-radius: 0.44rem 0.44rem 0 0;
 }
 

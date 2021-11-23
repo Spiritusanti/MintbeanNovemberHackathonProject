@@ -22,8 +22,8 @@ interface BioProps {
 const Bio: FC<BioProps> = ({ name, title, blurb, social, image }) => {
     return (
         <Card>
-            <div className={`${styles.cardHead} ${styles.bioCard}`}>
-                <Image src={image} alt="bio-image" className={`${styles.image}`} layout='responsive'></Image>
+            <div className={`${styles.cardHead}`}>
+                <Image src={image} alt="bio-image" className={`${styles.image}`} layout="responsive"></Image>
                 <h1>{name}</h1>
             </div>
             <div className={`${styles.cardBody} flex-col-center`}>

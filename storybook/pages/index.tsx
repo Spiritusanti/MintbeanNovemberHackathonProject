@@ -21,7 +21,7 @@ const bioPlaceholder = [
 	{
 		name: "Jacob McCracken",
 		title: "Web Developer",
-		blurb: "Self taught developer who can&apos;t stop tinkering. I love to experiment and figure out how and why things work to determine the best tool for a given project. Most experienced with Javascript, HTML/CSS, and react/redux. Currently working on improving my skill with typescript and expanding to the backend with NodeJS.",
+		blurb: "Self taught developer who can't stop tinkering. I love to experiment and figure out how and why things work to determine the best tool for a given project. Most experienced with Javascript, HTML/CSS, and react/redux. Currently working on improving my skill with typescript and expanding to the backend with NodeJS.",
 		image: Jacob,
 		social: [{ url: "https://www.linkedin.com/in/jacob-mccracken/", logo: linkedInLogo }, { url: "https://twitter.com/balorformorian", logo: twitterLogo }, { url: "https://github.com/Spiritusanti", logo: githubLogo }, { url: "https://spiritusanti.github.io/JacobMcCracken/", logo: portfolioIcon }],
 	},
