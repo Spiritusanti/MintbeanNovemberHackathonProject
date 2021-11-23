@@ -48,7 +48,10 @@ const Home: NextPage = () => {
 					</div>
 				</div>
 			</section>
-			<section id="tutorial" className={`${styles.section} flex-col-center clouds`} >
+			<section
+				id="tutorial"
+				className={`${styles.section} flex-col-center clouds`}
+			>
 				<div className="flex-row-center content">
 					<div className="flex-col">
 						<h1>How it Works</h1>
@@ -83,7 +86,10 @@ const Home: NextPage = () => {
 					</div>
 				</div>
 			</section>
-			<section id="about-us" className={`${styles.section} flex-col-center bg-light`}>
+			<section
+				id="about-us"
+				className={`${styles.section} flex-col-center bg-light`}
+			>
 				<div className="flex-col-center content">
 					<h1>Meet the Team</h1>
 					<div className={`${styles.cardContainer} flex-row-center`}>

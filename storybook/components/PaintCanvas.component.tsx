@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import PaintMenu from "./PaintMenu.component";
+import styles from "./PaintCanvas.module.css";
 
 interface CanvasProps {
-    onSaveCanvas: (imageUri: string) => void;
-    onNextScene: () => void;
-    currentPromptNumber: number;
-    promptsLength: number;
+	onSaveCanvas: (imageUri: string) => void;
+	onNextScene: () => void;
+	currentPromptNumber: number;
+	promptsLength: number;
 }
-
 
 const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPromptNumber, promptsLength }) => {
     // state management
@@ -136,26 +136,38 @@ const PaintCanvas: FC<CanvasProps> = ({ onSaveCanvas, onNextScene, currentPrompt
     }
 
 
-    return (
-        <section>
-            <PaintMenu setLineColor={setLineColor} setLineOpacity={setLineOpacity} setLineWidth={setLineWidth} setToolType={setToolType} onClearCanvas={onClearCanvas} />
-            <canvas
-                ref={canvasRef}
-                onMouseDown={startMouseDrawing}
-                onMouseUp={endMouseDrawing}
-                onMouseMove={drawWithMouse}
-                onTouchStart={startTouchDrawing}
-                onTouchEnd={endTouchDrawing}
-                onTouchMove={drawWithTouch}
-                width={window.innerWidth}
-                height={window.innerHeight}
-            />
-            <div>
-                {!storyComplete && <button onClick={saveCanvasHandler}>Save</button>}
-                {storyComplete && <button onClick={saveCanvasHandler}>See the result!</button>}
-            </div>
-        </section>
-    )
-}
+	return (
+		<section>
+            <div className={`${styles.buttonContainer} flex-col-center`}>
+					{!storyComplete && <button onClick={saveCanvasHandler}>Save & Next</button>}
+					{storyComplete && (
+						<button onClick={saveCanvasHandler}>See the result!</button>
+					)}
+				</div>
+			<div className={`${styles.canvasContainer}`}>
+				
+				<PaintMenu
+					setLineColor={setLineColor}
+					setLineOpacity={setLineOpacity}
+					setLineWidth={setLineWidth}
+					setToolType={setToolType}
+					onClearCanvas={onClearCanvas}
+				/>
+
+				<canvas
+					ref={canvasRef}
+					onMouseDown={startMouseDrawing}
+					onMouseUp={endMouseDrawing}
+					onMouseMove={drawWithMouse}
+					onTouchStart={startTouchDrawing}
+					onTouchEnd={endTouchDrawing}
+					onTouchMove={drawWithTouch}
+					width={window.innerWidth}
+					height={window.innerHeight}
+				/>
+			</div>
+		</section>
+	);
+};
 
 export default PaintCanvas;

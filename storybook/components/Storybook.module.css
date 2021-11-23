@@ -1,0 +1,37 @@
+
+.story h1 {
+    margin: 1.11rem;
+}
+
+.buttonContainer {
+	margin: 10px;
+}
+
+
+.storyContainer ul {
+    list-style: none;
+}
+
+.storyContainer li {
+    margin: 0;
+    padding: 0;
+}
+
+.storyContainer img {
+    width: 100vw;
+    background-color: white;
+}
+
+.prompt {
+	align-self: stretch;
+}
+
+.promptContent {
+	width: 100%;
+	max-width: 1100px;
+	padding: 15px 20px;
+	margin: 20px;
+	background-color: var(--light);
+	border-radius: 5px;
+	box-shadow: 0px 4px 8px 0px #2e4d5840;
+}

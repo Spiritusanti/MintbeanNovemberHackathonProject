@@ -1,0 +1,9 @@
+.canvasContainer {
+	margin: 0 10px;
+	background-color: var(--light);
+	border: 3px solid var(--primary-color);
+}
+
+.buttonContainer {
+	margin: 10px;
+}
