@@ -15,6 +15,9 @@
 	cursor: pointer;
 }
 
+.goBack {
+	margin-right: 10px;
+}
 
 .menuItem {
 	padding: 0 20px;

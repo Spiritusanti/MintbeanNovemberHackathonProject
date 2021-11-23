@@ -30,7 +30,7 @@ const Header: FC<HeaderProps> = ({ title, storySelectHandler, storySelected }) =
     }
 
     if (router.pathname === "/StorybookApp") {
-        headerContent = <div><p>{storySelected && storySelectHandler && <button onClick={storySelectHandler}>{`<`}</button>} {title}</p></div>
+        headerContent = <div><p>{storySelected && storySelectHandler && <button onClick={storySelectHandler} className={`${styles.goBack} secondary`}>{`<`}</button>} {title}</p></div>
     }
     return (
         <header className={`${styles.header} flex-row-center`}>
