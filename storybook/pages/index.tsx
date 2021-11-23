@@ -21,7 +21,7 @@ const bioPlaceholder = [
 	{
 		name: "Jacob McCracken",
 		title: "Web Developer",
-		blurb: "lorem ipsum dolor set",
+		blurb: "dolor set",
 		image: Jacob,
 		social: [{ url: "https://www.linkedin.com/in/jacob-mccracken/", logo: linkedInLogo }, { url: "https://twitter.com/balorformorian", logo: twitterLogo }, { url: "https://github.com/Spiritusanti", logo: githubLogo }, { url: "https://spiritusanti.github.io/JacobMcCracken/", logo: portfolioIcon }],
 	},
