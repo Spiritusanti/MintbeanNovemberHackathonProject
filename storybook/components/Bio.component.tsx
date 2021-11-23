@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Link from "next/link";
 import Card from "./Card.component";
 import placeholder from "../public/Fates_of_Orbit_by_Bougal-992x956.jpg";
 import styles from "./BioCard.module.css";
