@@ -9,28 +9,49 @@ import styles from "../styles/Home.module.css";
 import { v4 } from "uuid";
 
 // social logo imports
-import twitterLogo from '../public/twitter.svg';
-import linkedInLogo from '../public/linkedin.svg';
-import githubLogo from '../public/github-icon-white.svg';
+import twitterLogo from "../public/twitter.svg";
+import linkedInLogo from "../public/linkedin.svg";
+import githubLogo from "../public/github-icon-white.svg";
 import portfolioIcon from "../public/portfolio.svg";
 // portfolio photo
 import Chris from "../public/chris-profile.jpg";
 import Jacob from "../public/Jacob.jpg";
+// tutorial gifs
+import storySelectTut from "../public/storyselect.gif";
+import drawingLayout from "../public/drawing-layout.png";
+import finalExport from "../public/final-drawing.png";
 
 const bioPlaceholder = [
 	{
 		name: "Jacob McCracken",
 		title: "Web Developer",
-		blurb: "Self taught developer who can't stop tinkering. I love to experiment and figure out how and why things work to determine the best tool for a given project. Most experienced with Javascript, HTML/CSS, and react/redux. Currently working on improving my skill with typescript and expanding to the backend with NodeJS.",
+		blurb:
+			"Self taught developer who can't stop tinkering. I love to experiment and figure out how and why things work to determine the best tool for a given project. Most experienced with Javascript, HTML/CSS, and react/redux. Currently working on improving my skill with typescript and expanding to the backend with NodeJS.",
 		image: Jacob,
-		social: [{ url: "https://www.linkedin.com/in/jacob-mccracken/", logo: linkedInLogo }, { url: "https://twitter.com/balorformorian", logo: twitterLogo }, { url: "https://github.com/Spiritusanti", logo: githubLogo }, { url: "https://spiritusanti.github.io/JacobMcCracken/", logo: portfolioIcon }],
+		social: [
+			{
+				url: "https://www.linkedin.com/in/jacob-mccracken/",
+				logo: linkedInLogo,
+			},
+			{ url: "https://twitter.com/balorformorian", logo: twitterLogo },
+			{ url: "https://github.com/Spiritusanti", logo: githubLogo },
+			{
+				url: "https://spiritusanti.github.io/JacobMcCracken/",
+				logo: portfolioIcon,
+			},
+		],
 	},
 	{
 		name: "Chris Toribio",
 		title: "UX Designer",
-		blurb: "UX Designer with a background in Cognitive Science and a passion for building delightful products. Outside of design, you can find me rock climbing, practicing calligraphy, or caring for my home jungle. Through UX, I dream of making the world a little more beautiful and a little more human.",
+		blurb:
+			"UX Designer with a background in Cognitive Science and a passion for building delightful products. Outside of design, you can find me rock climbing, practicing calligraphy, or caring for my home jungle. Through UX, I dream of making the world a little more beautiful and a little more human.",
 		image: Chris,
-		social: [{ url: "https://www.linkedin.com/in/cromtoribio", logo: linkedInLogo }, { url: "https://www.twitter.com/christorib_io", logo: twitterLogo }, { url: "https://www.christoribio.com/", logo: portfolioIcon }],
+		social: [
+			{ url: "https://www.linkedin.com/in/cromtoribio", logo: linkedInLogo },
+			{ url: "https://www.twitter.com/christorib_io", logo: twitterLogo },
+			{ url: "https://www.christoribio.com/", logo: portfolioIcon },
+		],
 	},
 ];
 
@@ -61,37 +82,45 @@ const Home: NextPage = () => {
 				id="tutorial"
 				className={`${styles.section} flex-col-center clouds`}
 			>
-				<div className="flex-row-center content mobileContent">
-					<div className="flex-col">
-						<h1>How it Works</h1>
-						<div>
-							<ol>
-								<li>
-									<p>Choose a story from our collection</p>
-								</li>
-								<li>
-									<p>Use the tools to draw the scene in the drawing area</p>
-								</li>
-								<li>
-									<p>
-										Use your imagination as you illustrate each scene of the
-										story
-									</p>
-								</li>
-								<li>
-									<p>
-										Download a copy of your storybook complete with all your
-										drawings
-									</p>
-								</li>
-								<li>
-									<p>Share with your friends!</p>
-								</li>
-							</ol>
-						</div>
-					</div>
-					<div>
-						<Image src={placeholder} alt="demo image"></Image>
+				<div className="flex-col">
+					<h1>How it Works</h1>
+					<div className={`${styles.tutorial} flex-col-center center`}>
+						<ol>
+							<li>
+								<p>Choose a story from our collection</p>
+								<div className={`${styles.tutGif}`}>
+									<Image src={storySelectTut} alt="Story Selector Gif"></Image>
+								</div>
+							</li>
+							<li>
+								<p>Read the prompt at the top of the page.</p>
+								<p>
+									Then, use the tools to illustrate the scene on the canvas!
+								</p>
+								<div className={`${styles.tutGif}`}>
+									<Image src={drawingLayout} alt="Story Selector Gif"></Image>
+								</div>
+							</li>
+							<li>
+								<p>
+									Use your imagination as you illustrate each scene of the story.
+								</p>
+								<p>
+									Once you are done, you can download a copy of your storybook
+								</p>
+								<p>complete with all your
+									drawings</p>
+								<div className={`${styles.tutGif}`}>
+									<Image src={finalExport} alt="Story Selector Gif"></Image>
+								</div>
+							</li>
+							<li>
+								<p>Share with your friends!</p>
+							</li>
+						</ol>
+						<Link href="/StorybookApp" passHref>
+							<button>TRY FOR FREE</button>
+						</Link>
 					</div>
 				</div>
 			</section>
@@ -101,7 +130,9 @@ const Home: NextPage = () => {
 			>
 				<div className="flex-col-center content">
 					<h1>Meet the Team</h1>
-					<div className={`${styles.cardContainer} ${styles.flexSettings} flex-row-center bio-mobile-display`}>
+					<div
+						className={`${styles.cardContainer} ${styles.flexSettings} flex-row-center bio-mobile-display`}
+					>
 						{bioPlaceholder.map((bio) => (
 							<Bio
 								key={v4()}

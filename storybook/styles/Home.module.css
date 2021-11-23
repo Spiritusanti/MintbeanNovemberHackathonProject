@@ -6,7 +6,20 @@
 }
 
 .cardContainer {
-  max-width: 700px;
+  max-width: 1100px;
+}
+
+.tutorial ol {
+  margin: 0;
+  padding: 0;
+}
+
+.tutorial li {
+  list-style: none;;
+}
+
+.tutGif {
+  max-width: 40rem;
 }
 
 /* Footer Styling */
